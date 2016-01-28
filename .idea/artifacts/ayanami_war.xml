@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" build-on-make="true" name="ayanami:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="ayanami.war">
+      <element id="artifact" artifact-name="ayanami:war exploded" />
+    </root>
+  </artifact>
+</component>
