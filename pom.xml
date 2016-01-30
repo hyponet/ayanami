@@ -56,6 +56,12 @@
             <version>4.11</version>
             <scope>test</scope>
         </dependency>
+        <!-- mysql的依赖 -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.36</version>
+        </dependency>
         <!-- Hibernate -->
     </dependencies>
 
