@@ -17,7 +17,10 @@
           <element id="library" level="project" name="Maven: javax.servlet:servlet-api:2.5" />
           <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:4.1.1.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-expression:4.1.1.RELEASE" />
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.36" />
           <element id="library" level="application" name="mysql-connector-java-5.1.36-bin" />
+          <element id="library" level="application" name="Hibernate" />
+          <element id="library" level="application" name="c3p0-0.9.2.1" />
         </element>
       </element>
       <element id="directory" name="META-INF">
