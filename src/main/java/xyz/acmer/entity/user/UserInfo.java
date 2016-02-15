@@ -7,6 +7,7 @@ import java.util.Date;
  * 用户详细资料表
  * Created by hypo on 16-2-11.
  */
+@Entity(name = "user_info")
 public class UserInfo {
 
     private Integer infoId;
@@ -19,6 +20,7 @@ public class UserInfo {
     private String webSite;
     private String company;
     private String school;
+    private Date joinTime;
 
     /**
      * tagLine：签名
@@ -45,24 +47,9 @@ public class UserInfo {
      */
     private String feedUrl;
 
-    public UserInfo(User user, Date birthday, String webSite,
-                    String company, String school, String tagLine,
-                    String github, String psnId, String steamId,
-                    String telegram, String twitter, String codingNet, String info, String feedUrl) {
+    public UserInfo(User user) {
         this.user = user;
-        this.birthday = birthday;
-        this.webSite = webSite;
-        this.company = company;
-        this.school = school;
-        this.tagLine = tagLine;
-        this.github = github;
-        this.psnId = psnId;
-        this.steamId = steamId;
-        this.telegram = telegram;
-        this.twitter = twitter;
-        this.codingNet = codingNet;
-        this.info = info;
-        this.feedUrl = feedUrl;
+        this.joinTime = new Date();
     }
 
     @Id
@@ -128,6 +115,15 @@ public class UserInfo {
 
     public void setTagLine(String tagLine) {
         this.tagLine = tagLine;
+    }
+
+    @Column(name = "join_time", columnDefinition = "TIMESTAMP")
+    public Date getJoinTime() {
+        return joinTime;
+    }
+
+    public void setJoinTime(Date joinTime) {
+        this.joinTime = joinTime;
     }
 
     @Column(name = "github", length = 50)
