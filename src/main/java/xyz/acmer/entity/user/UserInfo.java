@@ -1,32 +1,100 @@
 package xyz.acmer.entity.user;
 
+import javax.persistence.*;
+import java.util.Date;
+
 /**
+ * 用户详细资料表
  * Created by hypo on 16-2-11.
  */
 public class UserInfo {
+
     private Integer infoId;
-    private Integer userId;
+    private User user;
+
+    /**
+     * 个人信息
+     */
+    private Date birthday;
     private String webSite;
     private String company;
     private String school;
+
+    /**
+     * tagLine：签名
+     */
     private String tagLine;
+
+    /**
+     * 社交账号
+     */
     private String github;
     private String psnId;
     private String steamId;
     private String telegram;
     private String twitter;
     private String codingNet;
-    private String bio;
+
+    /**
+     * info : 个人简介
+     */
+    private String info;
+
+    /**
+     * 提供订阅的feed
+     */
     private String feedUrl;
 
+    public UserInfo(User user, Date birthday, String webSite,
+                    String company, String school, String tagLine,
+                    String github, String psnId, String steamId,
+                    String telegram, String twitter, String codingNet, String info, String feedUrl) {
+        this.user = user;
+        this.birthday = birthday;
+        this.webSite = webSite;
+        this.company = company;
+        this.school = school;
+        this.tagLine = tagLine;
+        this.github = github;
+        this.psnId = psnId;
+        this.steamId = steamId;
+        this.telegram = telegram;
+        this.twitter = twitter;
+        this.codingNet = codingNet;
+        this.info = info;
+        this.feedUrl = feedUrl;
+    }
+
+    @Id
+    @GeneratedValue
     public Integer getInfoId() {
         return infoId;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public void setInfoId(Integer infoId) {
+        this.infoId = infoId;
     }
 
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "user")
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    @Column(name = "birthday", columnDefinition = "DATE")
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    @Column(name = "url", length = 50)
     public String getWebSite() {
         return webSite;
     }
@@ -35,6 +103,7 @@ public class UserInfo {
         this.webSite = webSite;
     }
 
+    @Column(name = "company", length = 60)
     public String getCompany() {
         return company;
     }
@@ -43,6 +112,7 @@ public class UserInfo {
         this.company = company;
     }
 
+    @Column(name = "school", length = 60)
     public String getSchool() {
         return school;
     }
@@ -51,6 +121,7 @@ public class UserInfo {
         this.school = school;
     }
 
+    @Column(name = "tagline")
     public String getTagLine() {
         return tagLine;
     }
@@ -59,6 +130,7 @@ public class UserInfo {
         this.tagLine = tagLine;
     }
 
+    @Column(name = "github", length = 50)
     public String getGithub() {
         return github;
     }
@@ -67,6 +139,7 @@ public class UserInfo {
         this.github = github;
     }
 
+    @Column(name = "psn", length = 50)
     public String getPsnId() {
         return psnId;
     }
@@ -75,6 +148,7 @@ public class UserInfo {
         this.psnId = psnId;
     }
 
+    @Column(name = "steam", length = 50)
     public String getSteamId() {
         return steamId;
     }
@@ -83,6 +157,7 @@ public class UserInfo {
         this.steamId = steamId;
     }
 
+    @Column(name = "telegram", length = 50)
     public String getTelegram() {
         return telegram;
     }
@@ -91,6 +166,7 @@ public class UserInfo {
         this.telegram = telegram;
     }
 
+    @Column(name = "twitter", length = 50)
     public String getTwitter() {
         return twitter;
     }
@@ -99,6 +175,7 @@ public class UserInfo {
         this.twitter = twitter;
     }
 
+    @Column(name = "coding", length = 50)
     public String getCodingNet() {
         return codingNet;
     }
@@ -107,14 +184,16 @@ public class UserInfo {
         this.codingNet = codingNet;
     }
 
-    public String getBio() {
-        return bio;
+    public String getInfo() {
+        return info;
     }
 
-    public void setBio(String bio) {
-        this.bio = bio;
+    @Column(name = "info", length = 500, columnDefinition = "TEXT")
+    public void setInfo(String info) {
+        this.info = info;
     }
 
+    @Column(name = "feed")
     public String getFeedUrl() {
         return feedUrl;
     }
