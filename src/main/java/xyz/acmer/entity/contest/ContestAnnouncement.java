@@ -10,14 +10,14 @@ public class ContestAnnouncement {
     private Long announcementId;
     private Integer contestId;
     private String title;
-    private String context;
+    private String content;
     private String autherName;
     private Date submitTime;
 
     public ContestAnnouncement(Integer contestId, String title, String context, String autherName) {
         this.contestId = contestId;
         this.title = title;
-        this.context = context;
+        this.content = context;
         this.autherName = autherName;
 
         this.submitTime = new Date();
@@ -43,12 +43,12 @@ public class ContestAnnouncement {
         this.title = title;
     }
 
-    public String getContext() {
-        return context;
+    public String getContent() {
+        return content;
     }
 
-    public void setContext(String context) {
-        this.context = context;
+    public void setContent(String context) {
+        this.content = context;
     }
 
     public String getAutherName() {
