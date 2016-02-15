@@ -11,11 +11,16 @@ import javax.persistence.Id;
  */
 @Entity(name = "user")
 public class User{
+
     private Integer userId;
     private String userName;
     private String nickName;
     private String email;
     private String password;
+
+    /**
+     * 账户铜币数
+     */
     private Integer balance;
 
 
