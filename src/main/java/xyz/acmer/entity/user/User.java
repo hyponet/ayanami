@@ -1,9 +1,12 @@
 package xyz.acmer.entity.user;
 
+import javax.persistence.Entity;
+
 /**
  * Created by hypo on 16-2-2.
  */
-public class User implements IUser{
+@Entity
+public class User{
     private Integer userId;
     private String userName;
     private String nickName;
