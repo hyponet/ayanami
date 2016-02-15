@@ -1,4 +1,4 @@
-package xyz.acmer.tool.Users;
+package xyz.acmer.tool.user;
 
 /**
  * Created by hypo on 16-2-11.

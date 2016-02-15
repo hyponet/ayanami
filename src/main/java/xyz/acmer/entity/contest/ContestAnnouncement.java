@@ -1,4 +1,4 @@
-package xyz.acmer.service.contest;
+package xyz.acmer.entity.contest;
 
 import java.util.Date;
 

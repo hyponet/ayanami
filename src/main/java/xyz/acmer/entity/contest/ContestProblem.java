@@ -1,9 +1,9 @@
-package xyz.acmer.service.contest;
+package xyz.acmer.entity.contest;
 
 /**
  * Created by hypo on 16-2-11.
  */
-public class ContestProblems {
+public class ContestProblem {
     private Long cpid;
     private Integer problemId;
     private Integer contestId;
@@ -11,7 +11,7 @@ public class ContestProblems {
     private Integer accepted;
     private Integer submit;
 
-    public ContestProblems(Integer problemId, Integer contestId, String title) {
+    public ContestProblem(Integer problemId, Integer contestId, String title) {
         this.problemId = problemId;
         this.contestId = contestId;
         this.title = title;

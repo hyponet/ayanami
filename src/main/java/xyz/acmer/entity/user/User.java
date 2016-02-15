@@ -1,4 +1,4 @@
-package xyz.acmer.service.users;
+package xyz.acmer.entity.user;
 
 /**
  * Created by hypo on 16-2-2.

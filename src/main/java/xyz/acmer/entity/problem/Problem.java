@@ -1,4 +1,4 @@
-package xyz.acmer.service.problems;
+package xyz.acmer.entity.problem;
 
 import java.util.Date;
 
