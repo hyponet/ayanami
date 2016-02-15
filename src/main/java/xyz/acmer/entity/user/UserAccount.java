@@ -6,13 +6,32 @@ import javax.persistence.*;
  * 用户OJ账号信息表
  * Created by hypo on 16-2-11.
  */
+@Entity(name = "user_account")
 public class UserAccount {
+
     private Integer accountId;
     private User user;
+
+    /**
+     * OJ代号
+     */
     private String ojCode;
+
+    /**
+     * OJ登陆信息
+     * VJ使用用户自己的账户提交程序
+     */
     private String loginName;
     private String password;
+
+    /**
+     * 该OJ下的AC数目
+     */
     private Integer accepted;
+
+    /**
+     * 该OJ下的提交数目
+     */
     private Integer submit;
 
     public UserAccount(User user, String ojCode, String loginName,
