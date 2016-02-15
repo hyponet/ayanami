@@ -1,11 +1,15 @@
 package xyz.acmer.entity.user;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 /**
+ * 用户基本信息表
  * Created by hypo on 16-2-2.
  */
-@Entity
+@Entity(name = "user")
 public class User{
     private Integer userId;
     private String userName;
@@ -28,10 +32,13 @@ public class User{
         this.password = password;
     }
 
+    @Id
+    @GeneratedValue
     public Integer getUserId() {
         return userId;
     }
 
+    @Column(name = "user_name", nullable = false, unique = true, length = 20)
     public String getUserName() {
         return userName;
     }
@@ -40,6 +47,7 @@ public class User{
         this.userName = userName;
     }
 
+    @Column(name = "user_nickname", length = 30)
     public String getNickName() {
         return nickName;
     }
@@ -48,6 +56,7 @@ public class User{
         this.nickName = nickName;
     }
 
+    @Column(name = "email", nullable = false, unique = true)
     public String getEmail() {
         return email;
     }
@@ -56,6 +65,7 @@ public class User{
         this.email = email;
     }
 
+    @Column(name = "password", nullable = false)
     public String getPassword() {
         return password;
     }
@@ -64,6 +74,7 @@ public class User{
         this.password = password;
     }
 
+    @Column(name = "balance", nullable = false)
     public Integer getBalance() {
         return balance;
     }
