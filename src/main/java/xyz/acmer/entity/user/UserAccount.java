@@ -1,19 +1,23 @@
 package xyz.acmer.entity.user;
 
+import javax.persistence.*;
+
 /**
+ * 用户OJ账号信息表
  * Created by hypo on 16-2-11.
  */
 public class UserAccount {
     private Integer accountId;
-    private Integer userId;
+    private User user;
     private String ojCode;
     private String loginName;
     private String password;
     private Integer accepted;
     private Integer submit;
 
-    public UserAccount(Integer userId, String ojCode, String loginName, String password, Integer accepted, Integer submit) {
-        this.userId = userId;
+    public UserAccount(User user, String ojCode, String loginName,
+                       String password,Integer accepted, Integer submit) {
+        this.user = user;
         this.ojCode = ojCode;
         this.loginName = loginName;
         this.password = password;
@@ -21,18 +25,23 @@ public class UserAccount {
         this.submit = submit;
     }
 
+    @Id
+    @GeneratedValue
     public Integer getAccountId() {
         return accountId;
     }
 
-    public Integer getUserId() {
-        return userId;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "user")
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
+    @Column(name = "oj_code", nullable = false, length = 10)
     public String getOjCode() {
         return ojCode;
     }
@@ -41,6 +50,7 @@ public class UserAccount {
         this.ojCode = ojCode;
     }
 
+    @Column(name = "login_name", nullable = false, unique = true, length = 20)
     public String getLoginName() {
         return loginName;
     }
@@ -49,6 +59,7 @@ public class UserAccount {
         this.loginName = loginName;
     }
 
+    @Column(name = "password", nullable = false, length = 50)
     public String getPassword() {
         return password;
     }
@@ -57,6 +68,7 @@ public class UserAccount {
         this.password = password;
     }
 
+    @Column(name = "accepted", nullable = false)
     public Integer getAccepted() {
         return accepted;
     }
@@ -65,6 +77,7 @@ public class UserAccount {
         this.accepted = accepted;
     }
 
+    @Column(name = "submit", nullable = false)
     public Integer getSubmit() {
         return submit;
     }
