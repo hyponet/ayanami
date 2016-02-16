@@ -3,7 +3,13 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
 	http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 
-	<display-name>Spring MVC Application</display-name>
+	<display-name>Ayanami</display-name>
+
+	<!-- Spring config -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>WEB-INF/spring.xml,WEB-INF/spring-hibernate.xml</param-value>
+	</context-param>
 
     <servlet>
 		<servlet-name>mvc-dispatcher</servlet-name>
