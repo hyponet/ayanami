@@ -2,21 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e4115aa-0df1-4c1c-b04e-3c74af9d0eae" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/xyz/acmer/entity/contest/ContestType.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/config.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring-hibernate.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/hibernate.cfg.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/xyz/acmer/entity/contest/ContestAnnouncement.java" afterPath="$PROJECT_DIR$/src/main/java/xyz/acmer/entity/contest/ContestAnnouncement.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/xyz/acmer/entity/contest/ContestInfo.java" afterPath="$PROJECT_DIR$/src/main/java/xyz/acmer/entity/contest/ContestInfo.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/xyz/acmer/entity/contest/ContestProblem.java" afterPath="$PROJECT_DIR$/src/main/java/xyz/acmer/entity/contest/ContestProblem.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ayanami.iml" afterPath="$PROJECT_DIR$/ayanami.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/ayanami_war.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/ayanami_war.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/ayanami_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/ayanami_war_exploded.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/xyz/acmer/entity/contest/ContestType.java" afterPath="$PROJECT_DIR$/src/main/java/xyz/acmer/entity/contest/ContestType.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/config.properties" afterPath="$PROJECT_DIR$/src/main/resources/config.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring-hibernate.xml" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring-hibernate.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring.xml" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ayanami.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -774,12 +768,12 @@
       <workItem from="1455458907673" duration="2209000" />
       <workItem from="1455519627528" duration="70000" />
       <workItem from="1455539919994" duration="12201000" />
-      <workItem from="1455609518318" duration="13282000" />
+      <workItem from="1455609518318" duration="13345000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="79427000" />
+    <option name="totallyTimeSpent" value="79490000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-4" width="1366" height="772" extended-state="6" />
