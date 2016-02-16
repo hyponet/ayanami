@@ -3,4 +3,43 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+       <bean id="emf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+              <property name="dataSource" ref="dataSource"/>
+              <property name="jpaVendorAdapter" ref="jpaVendorAdapter"/>
+       </bean>
+
+       <bean id="jpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+              <property name="database" value="MYSQL" />
+              <property name="showSql" value="true" />
+              <property name="generateDdl" value="false" />
+              <property name="databasePlatform" value="org.hibernate.dialect.MySQL5Dialect" />
+       </bean>
+
+       <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+              <!-- access -->
+              <property name="driverClass" value="com.mysql.jdbc.Driver" />
+              <property name="jdbcUrl" value="${db_url}" />
+              <property name="user" value="${db_username}" />
+              <property name="password" value="${db_password}" />
+              <!-- pool sizing -->
+              <property name="initialPoolSize" value="3" />
+              <property name="minPoolSize" value="6" />
+              <property name="maxPoolSize" value="25" />
+              <property name="acquireIncrement" value="3" />
+              <property name="maxStatements" value="100" />
+              <!-- retries -->
+              <property name="acquireRetryAttempts" value="30" />
+              <property name="acquireRetryDelay" value="1000" /> <!-- 1s -->
+              <property name="breakAfterAcquireFailure" value="false" />
+              <!-- refreshing connections -->
+              <property name="maxIdleTime" value="180" /> <!-- 3min -->
+              <property name="maxConnectionAge" value="10" /> <!-- 1h -->
+              <!-- timeouts and testing -->
+              <property name="checkoutTimeout" value="5000" /> <!-- 5s -->
+              <property name="idleConnectionTestPeriod" value="60" /> <!-- 60 -->
+              <property name="testConnectionOnCheckout" value="true" />
+              <property name="preferredTestQuery" value="SELECT 1" />
+              <property name="testConnectionOnCheckin" value="true" />
+       </bean>
+
 </beans>
