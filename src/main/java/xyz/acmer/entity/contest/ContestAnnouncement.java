@@ -1,21 +1,46 @@
 package xyz.acmer.entity.contest;
 
+import javax.persistence.*;
 import java.util.Date;
 
 /**
+ * 比赛公告表 保存比赛中的管理员发布的公告
  * Created by hypo on 16-2-11.
  */
+@Entity
 public class ContestAnnouncement {
 
     private Long announcementId;
-    private Integer contestId;
+
+    /**
+     * 比赛：属于哪场比赛的公告
+     */
+    private ContestInfo contest;
+
+    /**
+     * 标题
+     * 会及时推送标题给用户，不可为空
+     */
     private String title;
+
+    /**
+     * 公告内容
+     */
     private String content;
+
+    /**
+     * 署名
+     * 就是留个梗，毕竟只有创建者才有权限发布公告
+     */
     private String autherName;
+
+    /**
+     * 发布时间 自动生成
+     */
     private Date submitTime;
 
-    public ContestAnnouncement(Integer contestId, String title, String context, String autherName) {
-        this.contestId = contestId;
+    public ContestAnnouncement(ContestInfo contest, String title, String context, String autherName) {
+        this.contest = contest;
         this.title = title;
         this.content = context;
         this.autherName = autherName;
@@ -23,18 +48,23 @@ public class ContestAnnouncement {
         this.submitTime = new Date();
     }
 
+    @Id
+    @GeneratedValue
     public Long getAnnouncementId() {
         return announcementId;
     }
 
-    public Integer getContestId() {
-        return contestId;
+    @ManyToOne
+    @JoinColumn(name = "contest")
+    public ContestInfo getContest() {
+        return contest;
     }
 
-    public void setContestId(Integer contestId) {
-        this.contestId = contestId;
+    public void setContest(ContestInfo contest) {
+        this.contest = contest;
     }
 
+    @Column(name = "title", nullable = false, length = 100)
     public String getTitle() {
         return title;
     }
@@ -43,6 +73,7 @@ public class ContestAnnouncement {
         this.title = title;
     }
 
+    @Column(name = "content")
     public String getContent() {
         return content;
     }
@@ -51,6 +82,7 @@ public class ContestAnnouncement {
         this.content = context;
     }
 
+    @Column(name = "auther", length = 50)
     public String getAutherName() {
         return autherName;
     }
@@ -59,6 +91,7 @@ public class ContestAnnouncement {
         this.autherName = autherName;
     }
 
+    @Column(name = "submit_time", columnDefinition = "TIMESTAMP")
     public Date getSubmitTime() {
         return submitTime;
     }
