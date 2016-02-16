@@ -1,44 +1,70 @@
 package xyz.acmer.entity.contest;
 
+import xyz.acmer.entity.problem.Problem;
+
+import javax.persistence.*;
+
 /**
+ * 比赛题目表
  * Created by hypo on 16-2-11.
  */
+@Entity
 public class ContestProblem {
-    private Long cpid;
-    private Integer problemId;
-    private Integer contestId;
+
+    private Long problemId;
+    private Problem problem;
+    private ContestInfo contest;
+
+    /**
+     * 在比赛中题目使用自定义标题
+     */
     private String title;
+
+    /**
+     * 本场比赛中AC数目
+     */
     private Integer accepted;
+
+    /**
+     * 本场比赛中的提交数目
+     */
     private Integer submit;
 
-    public ContestProblem(Integer problemId, Integer contestId, String title) {
-        this.problemId = problemId;
-        this.contestId = contestId;
+    public ContestProblem(Problem problem, ContestInfo contestId, String title) {
+        this.problem = problem;
+        this.contest = contestId;
         this.title = title;
         this.accepted = 0;
         this.submit = 0;
     }
 
-    public Long getCpid() {
-        return cpid;
-    }
-
-    public Integer getProblemId() {
+    @Id
+    @GeneratedValue
+    public Long getProblemId() {
         return problemId;
     }
 
-    public void setProblemId(Integer problemId) {
-        this.problemId = problemId;
+    @ManyToOne
+    @JoinColumn(name = "problem")
+    public Problem getProblem() {
+        return problem;
     }
 
-    public Integer getContestId() {
-        return contestId;
+    public void setProblem(Problem problem) {
+        this.problem = problem;
     }
 
-    public void setContestId(Integer contestId) {
-        this.contestId = contestId;
+    @ManyToOne
+    @JoinColumn(name = "contest")
+    public ContestInfo getContest() {
+        return contest;
     }
 
+    public void setContest(ContestInfo contest) {
+        this.contest = contest;
+    }
+
+    @Column(name = "title", length = 100)
     public String getTitle() {
         return title;
     }
@@ -47,6 +73,7 @@ public class ContestProblem {
         this.title = title;
     }
 
+    @Column(name = "accepted")
     public Integer getAccepted() {
         return accepted;
     }
@@ -55,6 +82,7 @@ public class ContestProblem {
         this.accepted = accepted;
     }
 
+    @Column(name = "submit")
     public Integer getSubmit() {
         return submit;
     }
