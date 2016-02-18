@@ -1,9 +1,8 @@
 package xyz.acmer.entity.user;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * 用户基本信息表
@@ -23,6 +22,8 @@ public class User{
      */
     private Integer balance;
 
+    public User() {
+    }
 
     public User(String userName, String email, String password) {
         this.userName = userName;
@@ -37,8 +38,11 @@ public class User{
         this.password = password;
     }
 
+    private Set<UserAccount> userAccounts = new HashSet<UserAccount>();
+
     @Id
     @GeneratedValue
+    @Column(name = "user_id")
     public Integer getUserId() {
         return userId;
     }
@@ -86,5 +90,30 @@ public class User{
 
     public void setBalance(Integer balance) {
         this.balance = balance;
+    }
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    public Set<UserAccount> getUserAccounts() {
+        return userAccounts;
+    }
+
+    public void setUserAccounts(Set<UserAccount> userAccounts) {
+        this.userAccounts = userAccounts;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        return userId.equals(user.userId);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return userId.hashCode();
     }
 }
