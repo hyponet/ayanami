@@ -72,6 +72,7 @@ public class Status {
 
     @Id
     @GeneratedValue
+    @Column(name = "run_id")
     public Long getRunId() {
         return runId;
     }
@@ -80,8 +81,8 @@ public class Status {
         this.runId = runId;
     }
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "submiter")
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
     public User getSubmiter() {
         return submiter;
     }
@@ -90,8 +91,8 @@ public class Status {
         this.submiter = submiter;
     }
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "problem")
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "problem_id")
     public Problem getProblem() {
         return problem;
     }
