@@ -61,6 +61,7 @@ public class Problem {
 
     @Id
     @GeneratedValue
+    @Column(name = "problem_id")
     public Integer getProblemId() {
         return problemId;
     }
