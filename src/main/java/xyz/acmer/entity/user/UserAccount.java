@@ -53,6 +53,10 @@ public class UserAccount {
         return accountId;
     }
 
+    public void setAccountId(Integer accountId) {
+        this.accountId = accountId;
+    }
+
     @ManyToOne(cascade = {CascadeType.MERGE,CascadeType.REFRESH }, optional = true)
     @JoinColumn(name = "user_id")
     public User getUser() {
