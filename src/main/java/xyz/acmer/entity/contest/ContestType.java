@@ -9,7 +9,7 @@ import javax.persistence.Id;
  * 比赛类型表
  * Created by hypo on 16-2-16.
  */
-@Entity
+@Entity(name = "contest_type")
 public class ContestType {
 
     private Integer typeId;
