@@ -54,8 +54,8 @@ public class ContestAnnouncement {
         return announcementId;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "contest")
+    @ManyToOne(cascade = {CascadeType.MERGE,CascadeType.REFRESH }, optional = true)
+    @JoinColumn(name = "contest_id")
     public ContestInfo getContest() {
         return contest;
     }
