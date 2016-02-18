@@ -10,7 +10,7 @@ import java.util.Date;
  * 题目信息表
  * Created by hypo on 16-2-2.
  */
-@Entity
+@Entity(name = "problem")
 public class Problem {
 
     /**
@@ -66,6 +66,10 @@ public class Problem {
         return problemId;
     }
 
+    public void setProblemId(Integer problemId) {
+        this.problemId = problemId;
+    }
+
     @Column(name = "oj_code", nullable = false, length = 10)
     public String getOjCode() {
         return ojCode;
@@ -116,7 +120,7 @@ public class Problem {
         return updateDate;
     }
 
-    public void setUpdateDate() {
-        this.updateDate = new Date();
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
     }
 }
