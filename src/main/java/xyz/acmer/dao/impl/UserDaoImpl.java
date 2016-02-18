@@ -16,7 +16,7 @@ import javax.persistence.Query;
 @Transactional
 public class UserDaoImpl implements IUserDao {
 
-    @PersistenceContext
+    @PersistenceContext()
     private EntityManager entityManager;
 
     @Override
@@ -40,7 +40,7 @@ public class UserDaoImpl implements IUserDao {
     @Override
     public Boolean delete(User user) {
         entityManager.remove(user);
-        return null;
+        return true;
     }
 
     @Override
