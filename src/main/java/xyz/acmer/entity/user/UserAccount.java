@@ -34,6 +34,9 @@ public class UserAccount {
      */
     private Integer submit;
 
+    public UserAccount() {
+    }
+
     public UserAccount(User user, String ojCode, String loginName,
                        String password,Integer accepted, Integer submit) {
         this.user = user;
@@ -50,8 +53,8 @@ public class UserAccount {
         return accountId;
     }
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "user")
+    @ManyToOne(cascade = {CascadeType.MERGE,CascadeType.REFRESH }, optional = true)
+    @JoinColumn(name = "user_id")
     public User getUser() {
         return user;
     }
@@ -103,5 +106,24 @@ public class UserAccount {
 
     public void setSubmit(Integer submit) {
         this.submit = submit;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        UserAccount that = (UserAccount) o;
+
+        if (!user.equals(that.user)) return false;
+        return ojCode.equals(that.ojCode);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = user.hashCode();
+        result = 31 * result + ojCode.hashCode();
+        return result;
     }
 }
