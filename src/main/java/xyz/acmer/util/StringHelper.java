@@ -4,12 +4,28 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
+ * 字符串相关工具集
  * Created by hypo on 16-2-15.
  */
 public class StringHelper {
 
-    public String getCurrentDateTime(Date date){
+    public static String getCurrentDateTime(Date date){
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         return sdf.format(date);
+    }
+
+    public static String getSafeString(String str, Integer maxLength){
+
+        if (str == null){
+            return "";
+        }
+        str = str.replaceAll("<", "&lt;");
+        str = str.replaceAll(">", "&gt;");
+
+        if (str.length() > maxLength){
+            str = str.substring(0, maxLength);
+        }
+
+        return str;
     }
 }
