@@ -4,12 +4,14 @@ import xyz.acmer.entity.user.User;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * 比赛信息表
  * Created by hypo on 16-2-11.
  */
-@Entity
+@Entity(name = "contest")
 public class ContestInfo {
 
     private Integer contestId;
@@ -36,6 +38,16 @@ public class ContestInfo {
      */
     private ContestType contestType;
 
+    /***
+     * 比赛题目
+     */
+    private Set<ContestProblem> problems = new HashSet<ContestProblem>();
+
+    /**
+     * 比赛通知
+     */
+    private Set<ContestAnnouncement> announcements = new HashSet<ContestAnnouncement>();
+
     public ContestInfo(User creater, String title, Date beginTime, Integer length,
                        String password, String description, ContestType contestType) {
         this.creater = creater;
@@ -49,17 +61,18 @@ public class ContestInfo {
 
     @Id
     @GeneratedValue
+    @Column(name = "contest_id")
     public Integer getContestId() {
         return contestId;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "creater")
-    public User getCreaterId() {
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    public User getCreater() {
         return creater;
     }
 
-    public void setCreaterId(User creater) {
+    public void setCreater(User creater) {
         this.creater = creater;
     }
 
@@ -108,7 +121,7 @@ public class ContestInfo {
         this.description = description;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "contest_type")
     public ContestType getContestType() {
         return contestType;
@@ -118,4 +131,21 @@ public class ContestInfo {
         this.contestType = contestType;
     }
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "contest")
+    public Set<ContestProblem> getProblems() {
+        return problems;
+    }
+
+    public void setProblems(Set<ContestProblem> problems) {
+        this.problems = problems;
+    }
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "contest")
+    public Set<ContestAnnouncement> getAnnouncements() {
+        return announcements;
+    }
+
+    public void setAnnouncements(Set<ContestAnnouncement> announcements) {
+        this.announcements = announcements;
+    }
 }
