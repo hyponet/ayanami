@@ -66,6 +66,10 @@ public class ContestInfo {
         return contestId;
     }
 
+    public void setContestId(Integer contestId) {
+        this.contestId = contestId;
+    }
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     public User getCreater() {
