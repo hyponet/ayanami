@@ -8,7 +8,7 @@ import javax.persistence.*;
  * 比赛题目表
  * Created by hypo on 16-2-11.
  */
-@Entity
+@Entity(name = "contest_problem")
 public class ContestProblem {
 
     private Long problemId;
@@ -42,6 +42,10 @@ public class ContestProblem {
     @GeneratedValue
     public Long getProblemId() {
         return problemId;
+    }
+
+    public void setProblemId(Long problemId) {
+        this.problemId = problemId;
     }
 
     @OneToOne(cascade = {CascadeType.MERGE,CascadeType.REFRESH }, optional = true)
