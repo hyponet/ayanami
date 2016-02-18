@@ -30,9 +30,9 @@ public class ContestProblem {
      */
     private Integer submit;
 
-    public ContestProblem(Problem problem, ContestInfo contestId, String title) {
+    public ContestProblem(Problem problem, ContestInfo contest, String title) {
         this.problem = problem;
-        this.contest = contestId;
+        this.contest = contest;
         this.title = title;
         this.accepted = 0;
         this.submit = 0;
@@ -44,8 +44,8 @@ public class ContestProblem {
         return problemId;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "problem")
+    @OneToOne(cascade = {CascadeType.MERGE,CascadeType.REFRESH }, optional = true)
+    @JoinColumn(name = "problem_id")
     public Problem getProblem() {
         return problem;
     }
@@ -54,8 +54,8 @@ public class ContestProblem {
         this.problem = problem;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "contest")
+    @ManyToOne(cascade = {CascadeType.MERGE,CascadeType.REFRESH }, optional = true)
+    @JoinColumn(name = "contest_id")
     public ContestInfo getContest() {
         return contest;
     }
