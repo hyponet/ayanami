@@ -1,4 +1,4 @@
-package xyz.acmer.tool;
+package xyz.acmer.util;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

@@ -1,4 +1,4 @@
-package xyz.acmer.tool.problem;
+package xyz.acmer.util.problem;
 
 /**
  * Created by hypo on 16-2-4.
