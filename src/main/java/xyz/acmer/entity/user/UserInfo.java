@@ -62,8 +62,8 @@ public class UserInfo {
         this.infoId = infoId;
     }
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "user")
+    @OneToOne(cascade = {CascadeType.MERGE,CascadeType.REFRESH }, optional = true)
+    @JoinColumn(name = "user_id")
     public User getUser() {
         return user;
     }
