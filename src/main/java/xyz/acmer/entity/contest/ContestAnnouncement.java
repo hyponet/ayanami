@@ -7,7 +7,7 @@ import java.util.Date;
  * 比赛公告表 保存比赛中的管理员发布的公告
  * Created by hypo on 16-2-11.
  */
-@Entity
+@Entity(name = "contest_announcement")
 public class ContestAnnouncement {
 
     private Long announcementId;
@@ -52,6 +52,10 @@ public class ContestAnnouncement {
     @GeneratedValue
     public Long getAnnouncementId() {
         return announcementId;
+    }
+
+    public void setAnnouncementId(Long announcementId) {
+        this.announcementId = announcementId;
     }
 
     @ManyToOne(cascade = {CascadeType.MERGE,CascadeType.REFRESH }, optional = true)
