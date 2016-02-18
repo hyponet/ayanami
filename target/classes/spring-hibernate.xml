@@ -1,0 +1,63 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <context:annotation-config />
+    <context:component-scan base-package="xyz.acmer.dao.impl"/>
+
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <!-- access -->
+        <property name="driverClass" value="com.mysql.jdbc.Driver" />
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/ayanami?characterEncoding=utf-8" />
+        <property name="user" value="root" />
+        <property name="password" value="password" />
+        <!-- pool sizing -->
+        <property name="initialPoolSize" value="3" />
+        <property name="minPoolSize" value="6" />
+        <property name="maxPoolSize" value="25" />
+        <property name="acquireIncrement" value="3" />
+        <property name="maxStatements" value="100" />
+        <!-- retries -->
+        <property name="acquireRetryAttempts" value="30" />
+        <property name="acquireRetryDelay" value="1000" /> <!-- 1s -->
+        <property name="breakAfterAcquireFailure" value="false" />
+        <!-- refreshing connections -->
+        <property name="maxIdleTime" value="180" /> <!-- 3min -->
+        <property name="maxConnectionAge" value="10" /> <!-- 1h -->
+        <!-- timeouts and testing -->
+        <property name="checkoutTimeout" value="5000" /> <!-- 5s -->
+        <property name="idleConnectionTestPeriod" value="60" /> <!-- 60 -->
+        <property name="testConnectionOnCheckout" value="true" />
+        <property name="preferredTestQuery" value="SELECT 1" />
+        <property name="testConnectionOnCheckin" value="true" />
+    </bean>
+
+    <bean id="jpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+        <property name="database" value="MYSQL" />
+        <property name="showSql" value="true" />
+        <property name="generateDdl" value="true" />
+        <property name="databasePlatform" value="org.hibernate.dialect.MySQL5Dialect" />
+    </bean>
+
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="jpaVendorAdapter" ref="jpaVendorAdapter"/>
+        <property name="packagesToScan" value="xyz.acmer.entity" />
+    </bean>
+
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory" />
+    </bean>
+
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
+
+</beans>
