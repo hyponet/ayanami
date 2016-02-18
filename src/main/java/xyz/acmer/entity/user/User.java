@@ -25,12 +25,6 @@ public class User{
     public User() {
     }
 
-    public User(String userName, String email, String password) {
-        this.userName = userName;
-        this.email = email;
-        this.password = password;
-    }
-
     public User(String userName, String nickName, String email, String password) {
         this.userName = userName;
         this.nickName = nickName;
@@ -45,6 +39,10 @@ public class User{
     @Column(name = "user_id")
     public Integer getUserId() {
         return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     @Column(name = "user_name", nullable = false, unique = true, length = 20)
