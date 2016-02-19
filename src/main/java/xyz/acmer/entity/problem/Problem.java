@@ -7,7 +7,8 @@ import java.util.Date;
  * 题目信息表
  * Created by hypo on 16-2-2.
  */
-@Entity(name = "problem")
+@Entity
+@Table(name = "problem")
 public class Problem {
 
     /**

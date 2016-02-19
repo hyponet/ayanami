@@ -8,7 +8,8 @@ import javax.persistence.*;
  * 比赛题目表
  * Created by hypo on 16-2-11.
  */
-@Entity(name = "contest_problem")
+@Entity
+@Table(name = "contest_problem")
 public class ContestProblem {
 
     private Long problemId;

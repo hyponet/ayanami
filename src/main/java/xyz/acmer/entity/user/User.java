@@ -8,7 +8,8 @@ import java.util.Set;
  * 用户基本信息表
  * Created by hypo on 16-2-2.
  */
-@Entity(name = "user")
+@Entity
+@Table(name = "user")
 public class User{
 
     private Long userId;

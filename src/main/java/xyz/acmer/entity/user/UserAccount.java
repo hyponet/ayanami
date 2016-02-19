@@ -6,7 +6,8 @@ import javax.persistence.*;
  * 用户OJ账号信息表
  * Created by hypo on 16-2-11.
  */
-@Entity(name = "user_account")
+@Entity
+@Table(name = "user_account")
 public class UserAccount {
 
     private Long accountId;

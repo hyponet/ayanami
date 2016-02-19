@@ -9,7 +9,8 @@ import java.util.Date;
  * 提交状态表
  * Created by hypo on 16-2-11.
  */
-@Entity(name = "status")
+@Entity
+@Table(name = "status")
 public class Status {
 
     /**

@@ -7,7 +7,8 @@ import java.util.Date;
  * 用户详细资料表
  * Created by hypo on 16-2-11.
  */
-@Entity(name = "user_info")
+@Entity
+@Table(name = "user_info")
 public class UserInfo {
 
     private Long infoId;

@@ -6,7 +6,8 @@ import javax.persistence.*;
  * 比赛类型表
  * Created by hypo on 16-2-16.
  */
-@Entity(name = "contest_type")
+@Entity
+@Table(name = "contest_type")
 public class ContestType {
 
     private Integer typeId;

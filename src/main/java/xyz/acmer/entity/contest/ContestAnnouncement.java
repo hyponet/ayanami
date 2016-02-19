@@ -7,7 +7,8 @@ import java.util.Date;
  * 比赛公告表 保存比赛中的管理员发布的公告
  * Created by hypo on 16-2-11.
  */
-@Entity(name = "contest_announcement")
+@Entity
+@Table(name = "contest_announcement")
 public class ContestAnnouncement {
 
     private Long announcementId;

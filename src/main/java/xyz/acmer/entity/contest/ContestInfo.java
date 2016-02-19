@@ -11,7 +11,8 @@ import java.util.Set;
  * 比赛信息表
  * Created by hypo on 16-2-11.
  */
-@Entity(name = "contest")
+@Entity
+@Table(name = "contest")
 public class ContestInfo {
 
     private Long contestId;
