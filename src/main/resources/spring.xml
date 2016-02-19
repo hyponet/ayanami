@@ -67,4 +67,5 @@
     <context:component-scan base-package="xyz.acmer.controller"/>
     <context:component-scan base-package="xyz.acmer.dao" />
     <context:component-scan base-package="xyz.acmer.service" />
+    <context:component-scan base-package="xyz.acmer.entity" />
 </beans>
