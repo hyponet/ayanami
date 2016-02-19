@@ -46,19 +46,4 @@ public class EncryptHelper {
 
         return password;
     }
-
-    public static Boolean verifyPassword(User user, String password){
-
-        if (password == null || password.length() == 0){
-            return false;
-        }
-
-        if (user == null || user.getPassword() == null){
-            return false;
-        }
-
-        password = getPassword(password);
-
-        return password.equals(user.getPassword());
-    }
 }
