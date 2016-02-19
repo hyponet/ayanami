@@ -42,9 +42,7 @@ public class EncryptHelper {
 
         // 加盐
         String str1 = md5(str + "unnecessary");
-        String str2 = md5(str1.substring(2, str1.length() / 2) + str);
-
-        String password = md5(str2);
+        String password = md5(str1 + str);
 
         return password;
     }
