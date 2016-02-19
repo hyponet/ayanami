@@ -49,7 +49,7 @@ public class ContestAnnouncement {
     }
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getAnnouncementId() {
         return announcementId;
     }

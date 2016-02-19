@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Entity(name = "user_account")
 public class UserAccount {
 
-    private Integer accountId;
+    private Long accountId;
     private User user;
 
     /**
@@ -48,12 +48,12 @@ public class UserAccount {
     }
 
     @Id
-    @GeneratedValue
-    public Integer getAccountId() {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public Long getAccountId() {
         return accountId;
     }
 
-    public void setAccountId(Integer accountId) {
+    public void setAccountId(Long accountId) {
         this.accountId = accountId;
     }
 

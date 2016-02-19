@@ -14,7 +14,7 @@ import java.util.Set;
 @Entity(name = "contest")
 public class ContestInfo {
 
-    private Integer contestId;
+    private Long contestId;
     private User creater;
     private String title;
 
@@ -60,13 +60,13 @@ public class ContestInfo {
     }
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "contest_id")
-    public Integer getContestId() {
+    public Long getContestId() {
         return contestId;
     }
 
-    public void setContestId(Integer contestId) {
+    public void setContestId(Long contestId) {
         this.contestId = contestId;
     }
 

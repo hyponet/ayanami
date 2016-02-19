@@ -1,9 +1,6 @@
 package xyz.acmer.entity.problem;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -16,7 +13,7 @@ public class Problem {
     /**
      * 站内统一 pid
      */
-    private Integer problemId;
+    private Long problemId;
 
     /**
      * OJ代号
@@ -60,13 +57,13 @@ public class Problem {
     }
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "problem_id")
-    public Integer getProblemId() {
+    public Long getProblemId() {
         return problemId;
     }
 
-    public void setProblemId(Integer problemId) {
+    public void setProblemId(Long problemId) {
         this.problemId = problemId;
     }
 

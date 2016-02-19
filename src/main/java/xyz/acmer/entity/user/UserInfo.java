@@ -10,7 +10,7 @@ import java.util.Date;
 @Entity(name = "user_info")
 public class UserInfo {
 
-    private Integer infoId;
+    private Long infoId;
     private User user;
 
     /**
@@ -53,12 +53,12 @@ public class UserInfo {
     }
 
     @Id
-    @GeneratedValue
-    public Integer getInfoId() {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public Long getInfoId() {
         return infoId;
     }
 
-    public void setInfoId(Integer infoId) {
+    public void setInfoId(Long infoId) {
         this.infoId = infoId;
     }
 

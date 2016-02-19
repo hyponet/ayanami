@@ -1,9 +1,6 @@
 package xyz.acmer.entity.contest;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * 比赛类型表
@@ -63,7 +60,7 @@ public class ContestType {
     }
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getTypeId() {
         return typeId;
     }

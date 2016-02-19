@@ -39,7 +39,7 @@ public class ContestProblem {
     }
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getProblemId() {
         return problemId;
     }
