@@ -64,6 +64,7 @@
 
     <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
 
+    <context:component-scan base-package="xyz.acmer.controller"/>
     <context:component-scan base-package="xyz.acmer.dao" />
     <context:component-scan base-package="xyz.acmer.service" />
 </beans>
