@@ -1,4 +1,4 @@
-package database;
+package xyz.acmer.database;
 
 import org.junit.After;
 import org.junit.Before;
@@ -9,7 +9,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import xyz.acmer.dao.IUserDao;
-import xyz.acmer.dao.impl.UserDaoImpl;
 import xyz.acmer.entity.user.User;
 
 /**
@@ -17,7 +16,7 @@ import xyz.acmer.entity.user.User;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@ContextConfiguration({"classpath*:spring-hibernate.xml"})
+@ContextConfiguration({"classpath*:spring.xml"})
 public class UserDaoTest {
 
     private User user;
@@ -27,7 +26,7 @@ public class UserDaoTest {
 
     @Before
     public void getUser(){
-        user = new User("123", "123", "i@123.net", "123");
+        user = new User("asd", "asd", "asd@123.net", "123");
     }
 
     @After
