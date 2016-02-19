@@ -16,7 +16,7 @@ import javax.persistence.Query;
 @Transactional
 public class UserDaoImpl implements IUserDao {
 
-    @PersistenceContext()
+    @PersistenceContext
     private EntityManager entityManager;
 
     @Override
@@ -46,23 +46,11 @@ public class UserDaoImpl implements IUserDao {
     @Override
     public User getUserByUsername(String username) {
 
-        final String GET_USER_BY_USERNAME =
-                "SELECT u FROM User u WHERE u.user_name = " + username;
-
-        Query query = entityManager.createQuery(GET_USER_BY_USERNAME);
-        User user = (User) query.getSingleResult();
-
-        return user;
+        return null;
     }
 
     @Override
     public User getUserByEmail(String email) {
-        final String GET_USER_BY_USERNAME =
-                "SELECT u FROM User u WHERE u.email = " + email;
-
-        Query query = entityManager.createQuery(GET_USER_BY_USERNAME);
-        User user = (User) query.getSingleResult();
-
-        return user;
+        return null;
     }
 }

@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
@@ -10,7 +11,6 @@
         http://www.springframework.org/schema/tx/spring-tx.xsd">
 
     <context:annotation-config />
-    <context:component-scan base-package="xyz.acmer.dao.impl"/>
 
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
         <!-- access -->
@@ -46,6 +46,8 @@
         <property name="databasePlatform" value="org.hibernate.dialect.MySQL5Dialect" />
     </bean>
 
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="jpaVendorAdapter" ref="jpaVendorAdapter"/>
@@ -56,8 +58,8 @@
         <property name="entityManagerFactory" ref="entityManagerFactory" />
     </bean>
 
-    <tx:annotation-driven transaction-manager="transactionManager"/>
-
     <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
 
+    <context:component-scan base-package="xyz.acmer.dao" />
+    <context:component-scan base-package="xyz.acmer.service" />
 </beans>

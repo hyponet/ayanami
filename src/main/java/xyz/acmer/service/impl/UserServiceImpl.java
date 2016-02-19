@@ -1,6 +1,8 @@
 package xyz.acmer.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.test.context.ContextConfiguration;
 import xyz.acmer.dao.IUserDao;
 import xyz.acmer.dao.impl.UserDaoImpl;
 import xyz.acmer.entity.user.User;
@@ -12,9 +14,11 @@ import xyz.acmer.util.EncryptHelper;
 @Service
 public class UserServiceImpl {
 
+    @Autowired
+    private IUserDao dao;
+
     public User addNewUser(String username, String nickname, String email, String password){
 
-        IUserDao dao = new UserDaoImpl();
         User newUser = new User(username, nickname, email, EncryptHelper.getPassword(password));
         dao.save(newUser);
 

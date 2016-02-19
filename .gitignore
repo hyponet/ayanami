@@ -12,6 +12,6 @@
 hs_err_pid*
 
 # idea temp Files
-./idea
+.idea/
 *.iml
 /target

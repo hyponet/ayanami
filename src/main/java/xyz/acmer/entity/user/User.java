@@ -35,7 +35,7 @@ public class User{
     private Set<UserAccount> userAccounts = new HashSet<UserAccount>();
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_id")
     public Integer getUserId() {
         return userId;
