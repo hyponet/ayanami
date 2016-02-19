@@ -11,6 +11,8 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import xyz.acmer.dao.IUserDao;
 import xyz.acmer.entity.user.User;
 
+import java.util.List;
+
 /**
  * Created by hypo on 16-2-18.
  */
@@ -19,24 +21,47 @@ import xyz.acmer.entity.user.User;
 @ContextConfiguration({"classpath*:spring.xml"})
 public class UserDaoTest {
 
-    private User user;
-
     @Autowired
     private IUserDao dao;
 
-    @Before
-    public void getUser(){
-        user = new User("asd", "asd", "asd@123.net", "123");
-    }
-
-    @After
-    public void print(){
+    @Test
+    public void save(){
+        User user = new User("hypo", "hypo", "i@ihypo.net", "123");
+        dao.save(user);
         System.out.println(user.getUserId());
     }
 
     @Test
-    public void save(){
-        dao.save(user);
+    public void getUserById(){
+
+        User user = dao.get(3L);
+
+        System.out.println(user.getNickName());
     }
 
+    @Test
+    public void getUserByUsername(){
+
+        User user = dao.getUserByUsername("hypo");
+
+        System.out.println(user.getNickName());
+    }
+
+    @Test
+    public void getUserByUserEmail(){
+
+        User user = dao.getUserByEmail("i@ihypo.net");
+
+        System.out.println(user.getNickName());
+    }
+
+    @Test
+    public void getAllUsers(){
+
+        List<User> list = dao.getAllUser();
+
+        for(User user: list){
+            System.out.println(user.getUserId() + "\t" + user.getUserName());
+        }
+    }
 }
