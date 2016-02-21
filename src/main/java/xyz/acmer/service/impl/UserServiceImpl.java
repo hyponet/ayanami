@@ -2,8 +2,9 @@ package xyz.acmer.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import xyz.acmer.dao.IUserDao;
+import org.springframework.transaction.annotation.Transactional;
 import xyz.acmer.entity.user.User;
+import xyz.acmer.repository.UserRepository;
 import xyz.acmer.service.IUserService;
 import xyz.acmer.util.EncryptHelper;
 
@@ -11,10 +12,11 @@ import xyz.acmer.util.EncryptHelper;
  * Created by hypo on 16-2-19.
  */
 @Service
+@Transactional
 public class UserServiceImpl implements IUserService {
 
     @Autowired
-    private IUserDao dao;
+    private UserRepository userRepository;
 
     public Boolean login(String email, String password){
 
@@ -22,7 +24,7 @@ public class UserServiceImpl implements IUserService {
             return false;
         }
 
-        User user = dao.getUserByEmail(email);
+        User user = userRepository.getUserByEmail(email);
 
         if (user == null || user.getPassword() == null){
             return false;
@@ -35,10 +37,10 @@ public class UserServiceImpl implements IUserService {
 
     public User addNewUser(String username, String nickname, String email, String password){
 
-        if(dao.getUserByEmail(email) == null && dao.getUserByUsername(username) == null){
+        if(userRepository.getUserByEmail(email) == null && userRepository.getUserByUsername(username) == null){
 
             User newUser = new User(username, nickname, email, EncryptHelper.getPassword(password));
-            dao.save(newUser);
+            userRepository.save(newUser);
 
             return newUser;
         }
