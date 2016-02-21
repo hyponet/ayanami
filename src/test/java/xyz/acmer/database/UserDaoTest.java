@@ -8,8 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
-import xyz.acmer.dao.IUserDao;
+import org.springframework.transaction.annotation.Transactional;
 import xyz.acmer.entity.user.User;
+import xyz.acmer.repository.UserRepository;
 
 import java.util.List;
 
@@ -22,7 +23,7 @@ import java.util.List;
 public class UserDaoTest {
 
     @Autowired
-    private IUserDao dao;
+    private UserRepository dao;
 
     @Test
     public void save(){
@@ -32,9 +33,10 @@ public class UserDaoTest {
     }
 
     @Test
+    @Transactional
     public void getUserById(){
 
-        User user = dao.get(3L);
+        User user = dao.getOne(4l);
 
         System.out.println(user.getNickName());
     }
@@ -58,7 +60,7 @@ public class UserDaoTest {
     @Test
     public void getAllUsers(){
 
-        List<User> list = dao.getAllUser();
+        List<User> list = dao.findAll();
 
         for(User user: list){
             System.out.println(user.getUserId() + "\t" + user.getUserName());
