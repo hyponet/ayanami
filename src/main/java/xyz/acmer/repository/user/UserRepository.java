@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import xyz.acmer.entity.user.User;
 
 /**
+ * User相关DAO
  * Created by hypo on 16-2-21.
  */
 @Repository
