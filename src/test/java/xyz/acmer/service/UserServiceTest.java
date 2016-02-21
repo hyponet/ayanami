@@ -21,6 +21,6 @@ public class UserServiceTest {
     @Test
     public void addNew(){
 
-        userService.addNewUser("test2", "test2", "test2@dss.com", "123");
+        userService.addNewUser("test3", "test4", "test5@dss.com", "123");
     }
 }
