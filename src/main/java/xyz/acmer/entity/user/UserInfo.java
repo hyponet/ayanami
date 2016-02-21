@@ -48,6 +48,10 @@ public class UserInfo {
      */
     private String feedUrl;
 
+    public UserInfo(){
+
+    }
+
     public UserInfo(User user) {
         this.user = user;
         this.joinTime = new Date();

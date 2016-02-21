@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import xyz.acmer.entity.user.User;
-import xyz.acmer.repository.UserRepository;
+import xyz.acmer.entity.user.UserInfo;
+import xyz.acmer.repository.user.UserInfoRepository;
+import xyz.acmer.repository.user.UserRepository;
 import xyz.acmer.service.IUserService;
 import xyz.acmer.util.EncryptHelper;
 
@@ -17,6 +19,9 @@ public class UserServiceImpl implements IUserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private UserInfoRepository userInfoRepository;
 
     public Boolean login(String email, String password){
 
@@ -41,6 +46,10 @@ public class UserServiceImpl implements IUserService {
 
             User newUser = new User(username, nickname, email, EncryptHelper.getPassword(password));
             userRepository.save(newUser);
+
+            UserInfo userInfo = new UserInfo(newUser);
+
+            userInfoRepository.save(userInfo);
 
             return newUser;
         }
