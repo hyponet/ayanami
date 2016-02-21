@@ -1,4 +1,4 @@
-package xyz.acmer.repository;
+package xyz.acmer.repository.user;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
