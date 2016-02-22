@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
-import xyz.acmer.repository.system.MakinamiRepository;
-import xyz.acmer.service.IMakinamiService;
 
 /**
  * Created by hypo on 16-2-22.
@@ -23,20 +21,25 @@ public class MakinamiTest {
     @Test
     public void addInternal(){
 
+        makinamiService.addInternal("http://127.0.0.1:5000");
+
     }
 
     @Test
     public void addExternal(){
 
+        makinamiService.addExternal("http://127.0.0.1:5000");
     }
 
     @Test
     public void getInternal(){
 
+        System.out.println(makinamiService.getInternal());
     }
 
     @Test
     public void getExternal(){
 
+        System.out.println(makinamiService.getExternal());
     }
 }
