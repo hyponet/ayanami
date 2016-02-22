@@ -194,7 +194,7 @@ public class UserInfo {
         this.info = info;
     }
 
-    @Column(name = "feed")
+    @Column(name = "feed", length = 100)
     public String getFeedUrl() {
         return feedUrl;
     }
