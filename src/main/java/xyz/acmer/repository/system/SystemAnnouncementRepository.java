@@ -1,0 +1,13 @@
+package xyz.acmer.repository.system;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+/**
+ * Created by hypo on 16-2-24.
+ */
+@Repository
+@Transactional
+public interface SystemAnnouncementRepository extends JpaRepository<Sys{
+}
