@@ -83,49 +83,37 @@ public class UserServiceImpl implements IUserService {
     @Override
     public Boolean addUserAccount(String loginname, String password, String ojCode, User user) {
 
-        /**
-         * 怎么选择爬虫是个问题，现在默认使用墙内爬虫
-         * 考虑要不要写一个爬虫选择工具 ==>根据ojCode选择墙内墙外爬虫（暂时感觉没必要）
+        /*
+         这个方法返回的account没有注入user信息
          */
-        String url = makinamiService.getInternal() + "/" + ojCode + "/user/" + loginname;
+        UserAccount account = makinamiService.getUserAccount(loginname, password, ojCode);
 
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("password", password);
-
-        jsonObject = JsonSender.post(url, jsonObject);
-
-        if(jsonObject != null && jsonObject.getBoolean("username")){
-            UserAccount account = new UserAccount(user, ojCode, loginname, password,
-                    jsonObject.getInt("accept"), jsonObject.getInt("submit"));
-
+        if(account != null){
+            /*
+             注入user
+             */
+            account.setUser(user);
             userAccountRepository.save(account);
 
             return true;
         }
+
         return false;
     }
 
     @Override
     public Boolean updateUserAccount(String loginname, String password, String ojCode, User user) {
 
-        /**
-         * 怎么选择爬虫是个问题，现在默认使用墙内爬虫
-         * 考虑要不要写一个爬虫选择工具 ==>根据ojCode选择墙内墙外爬虫（暂时感觉没必要）
-         */
-        String url = makinamiService.getInternal() + "/" + ojCode + "/user/" + loginname;
+        UserAccount account = makinamiService.getUserAccount(loginname, password, ojCode);
 
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("password", password);
-
-        jsonObject = JsonSender.post(url, jsonObject);
-
-        if(jsonObject != null && jsonObject.getBoolean("username")){
-            UserAccount account = userAccountRepository.getAcciuntByUserAndOj(user, ojCode);
-
+        if(account != null){
+            int accept = account.getAccepted();
+            int submit = account.getSubmit();
+            account = userAccountRepository.getAcciuntByUserAndOj(user, ojCode);
             account.setLoginName(loginname);
             account.setPassword(password);
-            account.setAccepted(jsonObject.getInt("accept"));
-            account.setSubmit(jsonObject.getInt("submit"));
+            account.setAccepted(accept);
+            account.setSubmit(submit);
             userAccountRepository.save(account);
 
             return true;
@@ -135,7 +123,7 @@ public class UserServiceImpl implements IUserService {
 
     /**
      * 更新用户资料，用户名，邮箱不允许更改
-     * @param map 对map的key要求很严格
+     * @param map 对map的key要求很严格,否则找不到指定项
      * @param user
      * @return
      */
@@ -145,11 +133,7 @@ public class UserServiceImpl implements IUserService {
         if(map.containsKey("nickname")){
 
             String nickName = map.get("nickname");
-
-            if (nickName.length() > 30){
-                nickName = nickName.substring(0, 30);
-            }
-            user.setNickName(nickName.trim());
+            user.setNickName(StringHelper.getSafeString(nickName, 30));
         }
 
         if(map.containsKey("password")){
@@ -179,126 +163,78 @@ public class UserServiceImpl implements IUserService {
         if(map.containsKey("webSite")){
 
             String webSite = map.get("webSite");
-
-            if(webSite.length() > 50){
-                webSite = webSite.substring(0, 50);
-            }
-            userInfo.setWebSite(webSite.trim());
+            userInfo.setWebSite(StringHelper.getSafeString(webSite, 50));
         }
 
         // 公司
         if(map.containsKey("company")){
 
             String company = map.get("company");
-
-            if(company.length() > 60){
-                company = company.substring(0, 60);
-            }
-            userInfo.setCompany(company.trim());
+            userInfo.setCompany(StringHelper.getSafeString(company, 60));
         }
 
         // 学校
         if(map.containsKey("school")){
 
             String school = map.get("school");
-
-            if (school.length() > 60){
-                school = school.substring(0, 60);
-            }
-            userInfo.setSchool(school.trim());
+            userInfo.setSchool(StringHelper.getSafeString(school, 60));
         }
 
         // 个性签名
         if(map.containsKey("tagLine")){
 
             String tagLine = map.get("tagLine");
-
-            if (tagLine.length() > 255){
-                tagLine = tagLine.substring(0, 255);
-            }
-            userInfo.setTagLine(tagLine.trim());
+            userInfo.setTagLine(StringHelper.getSafeString(tagLine, 255));
         }
 
         if(map.containsKey("github")){
 
             String github = map.get("github");
-
-            if(github.length() > 50){
-                github = github.substring(0, 50);
-            }
-            userInfo.setGithub(github.trim());
+            userInfo.setGithub(StringHelper.getSafeString(github, 50));
         }
 
         if(map.containsKey("psnId")){
 
             String psnId = map.get("psnId");
-
-            if(psnId.length() > 50){
-                psnId = psnId.substring(0, 50);
-            }
-            userInfo.setPsnId(psnId.trim());
+            userInfo.setPsnId(StringHelper.getSafeString(psnId, 50));
         }
 
         if(map.containsKey("steamId")){
 
             String steamId = map.get("steamId");
-
-            if(steamId.length() > 50){
-                steamId = steamId.substring(0, 50);
-            }
-            userInfo.setSteamId(steamId.trim());
+            userInfo.setSteamId(StringHelper.getSafeString(steamId, 50));
         }
 
         if(map.containsKey("telegram")){
 
             String telegram = map.get("telegram");
-
-            if(telegram.length() > 50){
-                telegram = telegram.substring(0, 50);
-            }
-            userInfo.setTelegram(telegram.trim());
+            userInfo.setTelegram(StringHelper.getSafeString(telegram, 50));
         }
 
         if(map.containsKey("twitter")){
 
             String twitter = map.get("twitter");
-
-            if(twitter.length() > 50){
-                twitter = twitter.substring(0, 50);
-            }
-            userInfo.setTwitter(twitter.trim());
+            userInfo.setTwitter(StringHelper.getSafeString(twitter, 50));
         }
 
         if(map.containsKey("codingNet")){
 
             String codingNet = map.get("codingNet");
-
-            if(codingNet.length() > 50){
-                codingNet = codingNet.substring(0, 50);
-            }
-            userInfo.setCodingNet(codingNet.trim());
+            userInfo.setCodingNet(StringHelper.getSafeString(codingNet, 50));
         }
 
         // 个人简介
         if(map.containsKey("info")){
 
             String info = map.get("info");
-
-            if(info.length() > 500){
-                info = info.substring(0, 500);
-            }
-            userInfo.setInfo(info.trim());
+            userInfo.setInfo(StringHelper.getSafeString(info, 500));
         }
 
         // 提供feed订阅的url
         if(map.containsKey("feedUrl")){
 
             String feedUrl = map.get("feedUrl");
-
-            if(feedUrl.length() > 100){
-                feedUrl = feedUrl.substring(0, 100);
-            }
-            userInfo.setFeedUrl(feedUrl.trim());
+            userInfo.setFeedUrl(StringHelper.getSafeString(feedUrl, 100));
         }
 
         userInfoRepository.save(userInfo);

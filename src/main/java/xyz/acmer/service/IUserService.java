@@ -5,6 +5,7 @@ import xyz.acmer.entity.user.User;
 import java.util.Map;
 
 /**
+ * 用户Service层 完成用户基础操作
  * Created by hypo on 16-2-19.
  */
 public interface IUserService {
