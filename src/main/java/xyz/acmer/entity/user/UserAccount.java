@@ -38,9 +38,36 @@ public class UserAccount {
     public UserAccount() {
     }
 
+    /**
+     * 完全构造函数
+     * @param user
+     * @param ojCode
+     * @param loginName
+     * @param password
+     * @param accepted
+     * @param submit
+     */
     public UserAccount(User user, String ojCode, String loginName,
                        String password,Integer accepted, Integer submit) {
         this.user = user;
+        this.ojCode = ojCode;
+        this.loginName = loginName;
+        this.password = password;
+        this.accepted = accepted;
+        this.submit = submit;
+    }
+
+    /**
+     * 延缓user注入构造函数
+     * 用此构造方法，在持久化前必须要指定User
+     * @param ojCode
+     * @param loginName
+     * @param password
+     * @param accepted
+     * @param submit
+     */
+    public UserAccount(String ojCode, String loginName,
+                       String password,Integer accepted, Integer submit) {
         this.ojCode = ojCode;
         this.loginName = loginName;
         this.password = password;
