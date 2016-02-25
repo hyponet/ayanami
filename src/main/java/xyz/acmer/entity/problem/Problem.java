@@ -1,5 +1,7 @@
 package xyz.acmer.entity.problem;
 
+import xyz.acmer.entity.system.OjCode;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -19,7 +21,7 @@ public class Problem {
     /**
      * OJ代号
      */
-    private String ojCode;
+    private OjCode ojCode;
 
     /**
      * 该OJ下的pid
@@ -48,7 +50,10 @@ public class Problem {
      */
     private Date updateDate;
 
-    public Problem(String ojCode, String pid, String title, Integer acceptedNumber, Integer submitNumber) {
+    public Problem() {
+    }
+
+    public Problem(OjCode ojCode, String pid, String title, Integer acceptedNumber, Integer submitNumber) {
         this.ojCode = ojCode;
         this.pid = pid;
         this.title = title;
@@ -68,12 +73,13 @@ public class Problem {
         this.problemId = problemId;
     }
 
-    @Column(name = "oj_code", nullable = false, length = 10)
-    public String getOjCode() {
+    @ManyToOne
+    @JoinColumn(name = "oj_id", nullable = false)
+    public OjCode getOjCode() {
         return ojCode;
     }
 
-    public void setOjCode(String ojCode) {
+    public void setOjCode(OjCode ojCode) {
         this.ojCode = ojCode;
     }
 

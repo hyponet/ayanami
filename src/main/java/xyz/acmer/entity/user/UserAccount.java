@@ -1,5 +1,7 @@
 package xyz.acmer.entity.user;
 
+import xyz.acmer.entity.system.OjCode;
+
 import javax.persistence.*;
 
 /**
@@ -16,7 +18,7 @@ public class UserAccount {
     /**
      * OJ代号
      */
-    private String ojCode;
+    private OjCode ojCode;
 
     /**
      * OJ登陆信息
@@ -47,7 +49,7 @@ public class UserAccount {
      * @param accepted
      * @param submit
      */
-    public UserAccount(User user, String ojCode, String loginName,
+    public UserAccount(User user, OjCode ojCode, String loginName,
                        String password,Integer accepted, Integer submit) {
         this.user = user;
         this.ojCode = ojCode;
@@ -66,7 +68,7 @@ public class UserAccount {
      * @param accepted
      * @param submit
      */
-    public UserAccount(String ojCode, String loginName,
+    public UserAccount(OjCode ojCode, String loginName,
                        String password,Integer accepted, Integer submit) {
         this.ojCode = ojCode;
         this.loginName = loginName;
@@ -95,12 +97,13 @@ public class UserAccount {
         this.user = user;
     }
 
-    @Column(name = "oj_code", nullable = false, length = 10)
-    public String getOjCode() {
+    @ManyToOne
+    @JoinColumn(name = "oj_id", nullable = false)
+    public OjCode getOjCode() {
         return ojCode;
     }
 
-    public void setOjCode(String ojCode) {
+    public void setOjCode(OjCode ojCode) {
         this.ojCode = ojCode;
     }
 

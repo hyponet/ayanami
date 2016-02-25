@@ -19,6 +19,11 @@ public class Status {
     private Long runId;
 
     /**
+     * 相关OJ的RunId
+     */
+    private Integer ojRunId;
+
+    /**
      * 提交者
      */
     private User submiter;
@@ -58,17 +63,14 @@ public class Status {
      */
     private Date submitTime;
 
-    public Status(User submiter, Problem problem, String result, String memory,
-                  String time, String language, String length, Date submitTime) {
+    /**
+     * 只有默认构造函数
+     * 但是默认构造后不能直接持久化需要把信息补全
+     * 用户提交（new Status(),获得提交时间）=> makinami判题 => 补全结果 => 持久化
+     */
+    public Status(){
 
-        this.submiter = submiter;
-        this.problem = problem;
-        this.result = result;
-        this.memory = memory;
-        this.time = time;
-        this.language = language;
-        this.length = length;
-        this.submitTime = submitTime;
+        this.submitTime = new Date();
     }
 
     @Id
@@ -82,7 +84,7 @@ public class Status {
         this.runId = runId;
     }
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "user_id")
     public User getSubmiter() {
         return submiter;
@@ -92,7 +94,16 @@ public class Status {
         this.submiter = submiter;
     }
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @Column(name = "oj_run_id", nullable = false)
+    public Integer getOjRunId() {
+        return ojRunId;
+    }
+
+    public void setOjRunId(Integer ojRunId) {
+        this.ojRunId = ojRunId;
+    }
+
+    @ManyToOne
     @JoinColumn(name = "problem_id")
     public Problem getProblem() {
         return problem;
@@ -154,5 +165,21 @@ public class Status {
 
     public void setSubmitTime(Date submitTime) {
         this.submitTime = submitTime;
+    }
+
+    @Override
+    public String toString() {
+        return "Status{" +
+                "runId=" + runId +
+                ", ojRunId=" + ojRunId +
+                ", submiter=" + submiter +
+                ", problem=" + problem +
+                ", result='" + result + '\'' +
+                ", memory='" + memory + '\'' +
+                ", time='" + time + '\'' +
+                ", language='" + language + '\'' +
+                ", length='" + length + '\'' +
+                ", submitTime=" + submitTime +
+                '}';
     }
 }
