@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
+import xyz.acmer.entity.system.OjCode;
 import xyz.acmer.entity.user.User;
 import xyz.acmer.entity.user.UserAccount;
 import xyz.acmer.repository.user.UserAccountRepository;
@@ -44,13 +45,14 @@ public class UserAccountTest {
     @Test
     public void addAccount(){
 
-        this.userAccount = new UserAccount(user, "poj", "sdutacm1", "sdutacm", 10, 20);
+        this.userAccount = new UserAccount(user, new OjCode("poj", "poj", "poj.org", "internal"),
+                "123", "123", 10, 20);
         userAccountRepository.save(userAccount);
     }
 
     @Test
     public void updateAccount(){
-        this.userAccount = userAccountRepository.getAcciuntByUserAndOj(user, "poj");
+        this.userAccount = userAccountRepository.getAcciuntByUserAndOj(user, new OjCode("poj", "poj", "poj.org", "internal"));
 
         userAccount.setSubmit(50);
         userAccountRepository.save(userAccount);

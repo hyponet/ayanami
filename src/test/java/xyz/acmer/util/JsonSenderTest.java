@@ -19,9 +19,9 @@ public class JsonSenderTest {
     public void senderPOST(){
         JSONObject jsonObject = new JSONObject();
 
-        jsonObject.put("password", "sdutacm");
+        jsonObject.put("password", "mxh19940822");
 
-        JSONObject userInfo = JsonSender.post("http://127.0.0.1:5000/poj/user/sdutacm1", jsonObject);
+        JSONObject userInfo = JsonSender.post("http://127.0.0.1:5000/poj/user/13110572081", jsonObject);
 
         System.out.println(userInfo);
     }

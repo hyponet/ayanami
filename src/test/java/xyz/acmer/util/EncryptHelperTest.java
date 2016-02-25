@@ -38,4 +38,20 @@ public class EncryptHelperTest {
         System.out.println(stringBuffer);
         System.out.println(EncryptHelper.md5(string));
     }
+
+    @Test
+    public void testBase64(){
+
+        String s = "Hello World";
+        String s1 = EncryptHelper.getBase64(s);
+        String s2 = EncryptHelper.getFromBase64(s1);
+        System.out.println(s);
+        System.out.println(s1);
+        System.out.println(s2);
+
+        System.out.println(EncryptHelper.getFromBase64("I2luY2x1ZGUgPHN0ZGlvLmg+CgppbnQgb" +
+                "WFpbigpCnsKICAgIGludCBhLGI7CiAgICBzY2FuZigiJ" +
+                "WQgJWQiLCZhLCAmYik7CiAgICBwcmludGYoIiVkXG4iL" +
+                "GErYik7CiAgICByZXR1cm4gMDsKfQ=="));
+    }
 }

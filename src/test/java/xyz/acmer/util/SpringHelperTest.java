@@ -17,4 +17,14 @@ public class SpringHelperTest {
 
         System.out.println(StringHelper.getCurrentDateTime(date));
     }
+
+    @Test
+    public void getSafeString(){
+
+        String str1 = " <1234567890>123</1234567890> ";
+        String str2 = "";
+
+        System.out.println(StringHelper.getSafeString(str1,100));
+        System.out.println(StringHelper.getSafeString(str2,100));
+    }
 }
