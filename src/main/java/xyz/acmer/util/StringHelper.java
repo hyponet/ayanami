@@ -20,8 +20,8 @@ public class StringHelper {
         if (str == null){
             return "";
         }
-//        str = str.replaceAll("<", "&lt;");
-//        str = str.replaceAll(">", "&gt;");
+        str = str.replaceAll("<", "&lt;");
+        str = str.replaceAll(">", "&gt;");
 
         if (str.length() > maxLength){
             str = str.substring(0, maxLength);
