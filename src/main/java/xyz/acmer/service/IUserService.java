@@ -1,5 +1,6 @@
 package xyz.acmer.service;
 
+import xyz.acmer.entity.system.OjCode;
 import xyz.acmer.entity.user.User;
 
 import java.util.Map;
@@ -16,7 +17,7 @@ public interface IUserService {
 
     Boolean updateUserInfo(Map<String, String> map, User user);
 
-    Boolean addUserAccount(String loginname, String password, String ojCode, User user);
+    Boolean addUserAccount(String loginname, String password, OjCode ojCode, User user);
 
-    Boolean updateUserAccount(String loginname, String password, String ojCode, User user);
+    Boolean updateUserAccount(String loginname, String password, OjCode ojCode, User user);
 }

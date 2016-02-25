@@ -4,6 +4,7 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import xyz.acmer.entity.system.OjCode;
 import xyz.acmer.entity.user.User;
 import xyz.acmer.entity.user.UserAccount;
 import xyz.acmer.entity.user.UserInfo;
@@ -81,7 +82,7 @@ public class UserServiceImpl implements IUserService {
      * @return
      */
     @Override
-    public Boolean addUserAccount(String loginname, String password, String ojCode, User user) {
+    public Boolean addUserAccount(String loginname, String password, OjCode ojCode, User user) {
 
         /*
          这个方法返回的account没有注入user信息
@@ -102,7 +103,7 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public Boolean updateUserAccount(String loginname, String password, String ojCode, User user) {
+    public Boolean updateUserAccount(String loginname, String password, OjCode ojCode, User user) {
 
         UserAccount account = makinamiService.getUserAccount(loginname, password, ojCode);
 
