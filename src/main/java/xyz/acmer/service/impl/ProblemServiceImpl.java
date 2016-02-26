@@ -2,13 +2,14 @@ package xyz.acmer.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import xyz.acmer.entity.contest.ContestInfo;
 import xyz.acmer.entity.problem.Problem;
 import xyz.acmer.entity.problem.Status;
 import xyz.acmer.entity.system.OjCode;
 import xyz.acmer.entity.user.User;
 import xyz.acmer.entity.user.UserAccount;
 import xyz.acmer.repository.problem.ProblemRepository;
+import xyz.acmer.repository.problem.StatusRepository;
 import xyz.acmer.repository.user.UserAccountRepository;
 import xyz.acmer.service.IMakinamiService;
 import xyz.acmer.service.IProblemService;
@@ -20,7 +21,6 @@ import java.util.List;
  * Created by hypo on 16-2-26.
  */
 @Service
-@Transactional
 public class ProblemServiceImpl implements IProblemService {
 
     @Autowired
@@ -31,6 +31,9 @@ public class ProblemServiceImpl implements IProblemService {
 
     @Autowired
     private UserAccountRepository userAccountRepository;
+
+    @Autowired
+    private StatusRepository statusRepository;
 
     /**
      * 添加新oj之后，获得oj中所有题目
@@ -44,7 +47,10 @@ public class ProblemServiceImpl implements IProblemService {
         for(Problem problem : problems){
             if(problem != null){
                 if(problem.getTitle().length() > 0){
-                    problemRepository.save(problem);
+                    Problem oldProblem = problemRepository.getProblemByOjCodeAndPid(ojCode, problem.getPid());
+                    if(oldProblem == null){
+                        problemRepository.save(problem);
+                    }
                 }
             }
         }
@@ -64,7 +70,6 @@ public class ProblemServiceImpl implements IProblemService {
             if(newProblem != null){
                 if(newProblem.getPid() != null && newProblem.getTitle().length() > 0){
                     Problem oldProblem = problemRepository.getProblemByOjCodeAndPid(ojCode, newProblem.getPid());
-
                     if(oldProblem == null){
                         problemRepository.save(newProblem);
                     }else {
@@ -110,10 +115,11 @@ public class ProblemServiceImpl implements IProblemService {
      * @param code     代码需要被base64加密
      * @param language
      * @param user
+     * @param contestInfo 如果属于比赛的status，这注入比赛信息
      * @return
      */
     @Override
-    public Status submitProblem(Problem problem, String code,String language, User user) {
+    public Status submitProblem(Problem problem, String code,String language, User user, ContestInfo contestInfo) {
 
         UserAccount userAccount = userAccountRepository.getAcciuntByUserAndOj(user, problem.getOjCode());
         String loginname = userAccount.getLoginName();
@@ -124,8 +130,14 @@ public class ProblemServiceImpl implements IProblemService {
         status.setSubmiter(user);
         status.setProblem(problem);
 
+        if(contestInfo != null){
+            status.setContestInfo(contestInfo);
+        }
+
+        statusRepository.save(status);
+
         // 更新提交/AC信息
-        if(status.getResult().equals("")){
+        if(status.getResult().equals("Accepted")){
             userAccount.setAccepted(userAccount.getAccepted() + 1);
             problem.setAcceptedNumber(problem.getAcceptedNumber() + 1);
         }
@@ -143,13 +155,16 @@ public class ProblemServiceImpl implements IProblemService {
      * 需要再次查询结果
      *
      * @param ojCode
-     * @param status
+     * @param runId
      * @return
      */
     @Override
-    public Status updateStatus(OjCode ojCode, Status status) {
+    public Status updateStatus(OjCode ojCode, Long runId) {
 
+        Status status = statusRepository.getOne(runId);
         status = makinamiService.updateStatus(ojCode, status);
-        return null;
+        statusRepository.save(status);
+
+        return status;
     }
 }

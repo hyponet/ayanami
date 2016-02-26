@@ -1,5 +1,6 @@
 package xyz.acmer.service;
 
+import xyz.acmer.entity.contest.ContestInfo;
 import xyz.acmer.entity.problem.Problem;
 import xyz.acmer.entity.problem.Status;
 import xyz.acmer.entity.system.OjCode;
@@ -37,17 +38,18 @@ public interface IProblemService {
      * @param code 代码需要被base64加密
      * @param language
      * @param user
+     * @param contestInfo 如果属于比赛的status，这注入比赛信息
      * @return
      */
-    Status submitProblem(Problem problem, String code, String language, User user);
+    Status submitProblem(Problem problem, String code, String language, User user, ContestInfo contestInfo);
 
     /**
      * 如果获得的题目状态为Waiting等
      * 需要再次查询结果
      *
      * @param ojCode
-     * @param status
+     * @param runId
      * @return
      */
-    Status updateStatus(OjCode ojCode, Status status);
+    Status updateStatus(OjCode ojCode, Long runId);
 }

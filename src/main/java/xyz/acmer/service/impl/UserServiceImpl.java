@@ -1,9 +1,7 @@
 package xyz.acmer.service.impl;
 
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import xyz.acmer.entity.system.OjCode;
 import xyz.acmer.entity.user.User;
 import xyz.acmer.entity.user.UserAccount;
@@ -14,17 +12,14 @@ import xyz.acmer.repository.user.UserRepository;
 import xyz.acmer.service.IMakinamiService;
 import xyz.acmer.service.IUserService;
 import xyz.acmer.util.EncryptHelper;
-import xyz.acmer.util.JsonSender;
 import xyz.acmer.util.StringHelper;
 
-import java.util.Date;
 import java.util.Map;
 
 /**
  * Created by hypo on 16-2-19.
  */
 @Service
-@Transactional
 public class UserServiceImpl implements IUserService {
 
     @Autowired

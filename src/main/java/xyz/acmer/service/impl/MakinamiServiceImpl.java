@@ -4,7 +4,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import xyz.acmer.entity.problem.Problem;
 import xyz.acmer.entity.problem.Status;
 import xyz.acmer.entity.system.MakinamiList;
@@ -23,7 +22,6 @@ import java.util.List;
  * Created by hypo on 16-2-22.
  */
 @Service
-@Transactional
 public class MakinamiServiceImpl implements IMakinamiService {
 
     @Autowired
@@ -322,10 +320,7 @@ public class MakinamiServiceImpl implements IMakinamiService {
                 if (jsonObject.has("time")){
                     status.setTime(jsonObject.getString("time"));
                 }
-                /**
-                 * 返回的status还缺少submiter和problem
-                 * 在持久化前,还需要注入以上这两个元素（外键）
-                 */
+
                 return status;
             }
         }
