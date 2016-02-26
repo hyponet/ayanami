@@ -1,5 +1,6 @@
 package xyz.acmer.entity.problem;
 
+import xyz.acmer.entity.contest.ContestInfo;
 import xyz.acmer.entity.user.User;
 
 import javax.persistence.*;
@@ -32,6 +33,12 @@ public class Status {
      * 题目
      */
     private Problem problem;
+
+    /**
+     * 如果属于某场比赛，包含比赛信息
+     * 可以为null
+     */
+    private ContestInfo contestInfo;
 
     /**
      * 返回状态
@@ -111,6 +118,16 @@ public class Status {
 
     public void setProblem(Problem problem) {
         this.problem = problem;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE,CascadeType.REFRESH }, optional = true)
+    @JoinColumn(name = "contest_id", nullable = true)
+    public ContestInfo getContestInfo() {
+        return contestInfo;
+    }
+
+    public void setContestInfo(ContestInfo contestInfo) {
+        this.contestInfo = contestInfo;
     }
 
     @Column(name = "result", length = 40)

@@ -1,5 +1,6 @@
 package xyz.acmer.entity.contest;
 
+import xyz.acmer.entity.problem.Status;
 import xyz.acmer.entity.user.User;
 
 import javax.persistence.*;
@@ -48,6 +49,11 @@ public class ContestInfo {
      * 比赛通知
      */
     private Set<ContestAnnouncement> announcements = new HashSet<ContestAnnouncement>();
+
+    /**
+     * 提交状态
+     */
+    private Set<Status> statuses = new HashSet<Status>();
 
     public ContestInfo(User creater, String title, Date beginTime, Integer length,
                        String password, String description, ContestType contestType) {
@@ -136,7 +142,7 @@ public class ContestInfo {
         this.contestType = contestType;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "contest")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "contest", fetch = FetchType.LAZY)
     public Set<ContestProblem> getProblems() {
         return problems;
     }
@@ -145,12 +151,21 @@ public class ContestInfo {
         this.problems = problems;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "contest")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "contest", fetch = FetchType.LAZY)
     public Set<ContestAnnouncement> getAnnouncements() {
         return announcements;
     }
 
     public void setAnnouncements(Set<ContestAnnouncement> announcements) {
         this.announcements = announcements;
+    }
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    public Set<Status> getStatuses() {
+        return statuses;
+    }
+
+    public void setStatuses(Set<Status> statuses) {
+        this.statuses = statuses;
     }
 }
