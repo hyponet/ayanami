@@ -2,6 +2,7 @@ package xyz.acmer.entity.contest;
 
 import xyz.acmer.entity.problem.Status;
 import xyz.acmer.entity.user.User;
+import xyz.acmer.util.StringHelper;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -27,6 +28,7 @@ public class ContestInfo {
      */
     private Date beginTime;
     private Integer length;
+    private Date endTime;
     private String password;
 
     /**
@@ -61,6 +63,7 @@ public class ContestInfo {
         this.title = title;
         this.beginTime = beginTime;
         this.length = length;
+        this.endTime = StringHelper.addMinute(beginTime, length);
         this.password = password;
         this.description = description;
         this.contestType = contestType;
@@ -103,6 +106,7 @@ public class ContestInfo {
 
     public void setBeginTime(Date beginTime) {
         this.beginTime = beginTime;
+        this.endTime = StringHelper.addMinute(beginTime, length);
     }
 
     @Column(name = "length", nullable = false)
@@ -112,6 +116,16 @@ public class ContestInfo {
 
     public void setLength(Integer length) {
         this.length = length;
+        this.endTime = StringHelper.addMinute(beginTime, length);
+    }
+
+    @Column(name = "end_time", nullable = false, columnDefinition = "TIMESTAMP")
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
     }
 
     @Column(name = "password")
