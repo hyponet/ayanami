@@ -18,6 +18,7 @@ import xyz.acmer.service.IContestService;
 import xyz.acmer.service.IProblemService;
 import xyz.acmer.util.StringHelper;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -150,20 +151,20 @@ public class ContestServiceImpl implements IContestService{
         }
 
         ContestType contestType = contestInfo.getContestType();
-        balanceService.spend(user, contestType.getSubmitSpend(), "在[" + contestInfo.getTitle()+ "]比赛中,向 " +
-                 problem.getTitle() + " 提交代码");
+        balanceService.spend(user, contestType.getSubmitSpend(),
+                "在[" + contestInfo.getTitle()+ "]比赛中,向 " + problem.getTitle() + " 提交代码");
 
         if(status.getResult().equals("Accepted")){
 
-            balanceService.get(user, contestType.getAcceptedAward(), "在[" + contestInfo.getTitle()+ "]比赛中,手刃 " +
-                    problem.getTitle());
+            balanceService.get(user, contestType.getAcceptedAward(),
+                    "在[" + contestInfo.getTitle()+ "]比赛中,手刃 " + problem.getTitle());
 
             List<Status> statuses = statusRepository.getStatusByContestInfoAndProblem(contestInfo, problem.getProblem());
 
             if(statuses == null || statuses.size() == 1){
                 // 一血
-                balanceService.get(user, contestType.getAcceptedAward(), "在[" + contestInfo.getTitle()+ "]比赛中,获得题目 " +
-                        problem.getTitle() + " 一血");
+                balanceService.get(user, contestType.getAcceptedAward(),
+                        "在[" + contestInfo.getTitle()+ "]比赛中,获得题目 " + problem.getTitle() + " 一血");
             }
         }
 
@@ -177,18 +178,32 @@ public class ContestServiceImpl implements IContestService{
      */
     @Override
     public List<ContestInfo> getAllContest() {
-        return null;
+
+        return contestInfoRepository.getAllContestByBeginTime();
     }
 
     /**
      * 根据时间（未开始 进行中 已结束）获得比赛列表
      *
-     * @param time
+     * @param time scheduled | running | ended
      * @return
      */
     @Override
     public List<ContestInfo> getContestByTime(String time) {
-        return null;
+
+        if(time == null){
+            return new ArrayList<ContestInfo>();
+        }
+
+        if(time.equals("scheduled")){
+            return contestInfoRepository.getContestScheduled(new Date());
+        }else if(time.equals("running")){
+            return contestInfoRepository.getContestRunning(new Date());
+        }else if(time.equals("ended")){
+            return contestInfoRepository.getContestEnded(new Date());
+        }else {
+            return getAllContest();
+        }
     }
 
     /**
@@ -199,7 +214,7 @@ public class ContestServiceImpl implements IContestService{
      */
     @Override
     public List<ContestInfo> getContestByType(ContestType contestType) {
-        return null;
+        return contestInfoRepository.getContestByContestType(contestType);
     }
 
     /**
@@ -219,7 +234,19 @@ public class ContestServiceImpl implements IContestService{
     public ContestType addContestType(String typeName, Integer createSpend, Integer firstBlood,
                                       Integer champion, Integer second, Integer third,
                                       Integer submitSpend, Integer acceptedAward) {
-        return null;
+
+        createSpend = createSpend < 0 ? createSpend * -1 : createSpend;
+        firstBlood = firstBlood < 0 ? firstBlood * -1 : firstBlood;
+        champion = champion < 0 ? champion * -1 : champion;
+        second = second < 0 ? second * -1 : second;
+        third = third < 0 ? third * -1 : third;
+        submitSpend = submitSpend < 0 ? submitSpend * -1 : submitSpend;
+        acceptedAward = acceptedAward < 0 ? acceptedAward * -1 : acceptedAward;
+
+        ContestType contestType = new ContestType(typeName, createSpend, firstBlood,
+                champion, second, third, submitSpend, acceptedAward);
+        contestTypeRepository.save(contestType);
+        return contestType;
     }
 
     /**
@@ -238,8 +265,17 @@ public class ContestServiceImpl implements IContestService{
     @Override
     public Boolean updateContestType(String typeName, Integer createSpend, Integer firstBlood,
                                      Integer champion, Integer second, Integer third,
-                                     Integer submitSpend, Integer acceptedAward) {
-        return null;
+                                     Integer submitSpend, Integer acceptedAward, ContestType contestType) {
+
+        contestType.setCreateSpend(createSpend < 0 ? createSpend * -1 : createSpend);
+        contestType.setFirstBlood(firstBlood < 0 ? firstBlood * -1 : firstBlood);
+        contestType.setChampion(champion < 0 ? champion * -1 : champion);
+        contestType.setSecond(second < 0 ? second * -1 : second);
+        contestType.setThird(third < 0 ? third * -1 : third);
+        contestType.setSubmitSpend(submitSpend < 0 ? submitSpend * -1 : submitSpend);
+        contestType.setAcceptedAward(acceptedAward < 0 ? acceptedAward * -1 : acceptedAward);
+        contestTypeRepository.save(contestType);
+        return true;
     }
 
     /**
@@ -252,7 +288,20 @@ public class ContestServiceImpl implements IContestService{
      */
     @Override
     public Boolean deleteContestType(Integer contestTypeId) {
-        return null;
+
+        ContestType contestType = contestTypeRepository.findOne(contestTypeId);
+
+        if(contestType == null){
+            return false;
+        }
+
+        List<ContestInfo> contestInfos = contestInfoRepository.getContestByContestType(contestType);
+
+        if(contestInfos == null || contestInfos.size() == 0){
+            contestTypeRepository.delete(contestTypeId);
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -262,7 +311,7 @@ public class ContestServiceImpl implements IContestService{
      */
     @Override
     public List<ContestType> getAllContestType() {
-        return null;
+        return contestTypeRepository.findAll();
     }
 
     /**
@@ -275,8 +324,18 @@ public class ContestServiceImpl implements IContestService{
      * @return
      */
     @Override
-    public ContestAnnouncement addContestAnnouncement(String title, String content,
+    public ContestAnnouncement addContestAnnouncement(User user, String title, String content,
                                                       String autherName, ContestInfo contest) {
+
+        if(contest.getCreater().getUserId() == user.getUserId()){
+            title = StringHelper.getSafeString(title, 100);
+            content = StringHelper.getSafeString(content, 255);
+            autherName = StringHelper.getSafeString(autherName, 50);
+            ContestAnnouncement contestAnnouncement = new ContestAnnouncement(contest, title, content, autherName);
+            contestAnnouncementRepository.save(contestAnnouncement);
+
+            return contestAnnouncement;
+        }
         return null;
     }
 
@@ -286,13 +345,33 @@ public class ContestServiceImpl implements IContestService{
      * @param title               公告标题
      * @param content             公告内容
      * @param autherName          作者名称
-     * @param contestAnnouncement 所需更新的公告
+     * @param contestAnnouncementId 所需更新的公告
      * @return
      */
     @Override
     public Boolean updateContestAnnouncement(String title, String content, String autherName,
-                                             ContestAnnouncement contestAnnouncement) {
-        return null;
+                                             Long contestAnnouncementId, User user) {
+
+        if(user == null){
+            return false;
+        }
+        ContestAnnouncement contestAnnouncement = contestAnnouncementRepository.getOne(contestAnnouncementId);
+
+        if(contestAnnouncement == null){
+            return false;
+        }
+
+        if(contestAnnouncement.getContest().getCreater().getUserId() == user.getUserId()){
+            title = StringHelper.getSafeString(title, 100);
+            content = StringHelper.getSafeString(content, 255);
+            autherName = StringHelper.getSafeString(autherName, 50);
+            contestAnnouncement.setTitle(title);
+            contestAnnouncement.setContent(content);
+            contestAnnouncement.setAutherName(autherName);
+            contestAnnouncementRepository.save(contestAnnouncement);
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -304,6 +383,20 @@ public class ContestServiceImpl implements IContestService{
      */
     @Override
     public Boolean deleteContestAnnouncement(Long contestAnnouncementId, User user) {
-        return null;
+
+        if(user == null){
+            return false;
+        }
+        ContestAnnouncement contestAnnouncement = contestAnnouncementRepository.getOne(contestAnnouncementId);
+
+        if(contestAnnouncement == null){
+            return false;
+        }
+
+        if(contestAnnouncement.getContest().getCreater().getUserId() == user.getUserId()){
+            contestAnnouncementRepository.delete(contestAnnouncementId);
+            return true;
+        }
+        return false;
     }
 }

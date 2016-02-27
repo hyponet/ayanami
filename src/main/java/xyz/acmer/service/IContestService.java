@@ -68,7 +68,7 @@ public interface IContestService {
 
     /**
      * 根据时间（未开始 进行中 已结束）获得比赛列表
-     * @param time
+     * @param time scheduled | running | ended
      * @return
      */
     List<ContestInfo> getContestByTime(String time);
@@ -107,8 +107,9 @@ public interface IContestService {
      * @param acceptedAward 每次AC的奖励
      * @return
      */
-    Boolean updateContestType(String typeName, Integer createSpend, Integer firstBlood, Integer champion,
-                              Integer second, Integer third, Integer submitSpend, Integer acceptedAward);
+    Boolean updateContestType(String typeName, Integer createSpend, Integer firstBlood,
+                              Integer champion, Integer second, Integer third, Integer submitSpend,
+                              Integer acceptedAward, ContestType contestType);
 
     /**
      * 删除比赛类型
@@ -133,18 +134,18 @@ public interface IContestService {
      * @param contest 所属比赛
      * @return
      */
-    ContestAnnouncement addContestAnnouncement(String title, String content, String autherName, ContestInfo contest);
+    ContestAnnouncement addContestAnnouncement(User user, String title, String content, String autherName, ContestInfo contest);
 
     /**
      * 更新比赛公告内容
      * @param title 公告标题
      * @param content 公告内容
      * @param autherName 作者名称
-     * @param contestAnnouncement 所需更新的公告
+     * @param contestAnnouncementId 所需更新的公告
      * @return
      */
     Boolean updateContestAnnouncement(String title, String content, String autherName,
-                                      ContestAnnouncement contestAnnouncement);
+                                      Long contestAnnouncementId, User user);
 
     /**
      * 删除公告
