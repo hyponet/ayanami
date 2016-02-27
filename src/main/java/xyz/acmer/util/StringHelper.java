@@ -2,6 +2,7 @@ package xyz.acmer.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -41,5 +42,13 @@ public class StringHelper {
             return null;
         }
         return date;
+    }
+
+    public static Date addMinute(Date date, Integer length){
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.add(Calendar.MINUTE, length);
+
+        return cal.getTime();
     }
 }
