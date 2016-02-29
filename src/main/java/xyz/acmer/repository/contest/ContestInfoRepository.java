@@ -22,15 +22,15 @@ public interface ContestInfoRepository extends JpaRepository<ContestInfo, Long> 
     @Query("SELECT c FROM ContestInfo c ORDER BY c.beginTime DESC")
     List<ContestInfo> getAllContestByBeginTime();
 
-    @Query("SELECT c FROM ContestInfo c WHERE c.contestType=:type ORDER BY c.beginTime DESC")
-    List<ContestInfo> getContestByContestType(@Param("type")ContestType contestType);
+    @Query("SELECT c FROM ContestInfo c WHERE c.contestType=:contestType ORDER BY c.beginTime DESC")
+    List<ContestInfo> getContestByContestType(@Param("contestType")ContestType contestType);
 
-    @Query("SELECT c FROM ContestInfo c WHERE c.beginTime>:now ORDER BY c.beginTime DESC")
+    @Query("SELECT c FROM ContestInfo c WHERE c.beginTime>:date ORDER BY c.beginTime DESC")
     List<ContestInfo> getContestScheduled(@Param("date")Date now);
 
-    @Query("SELECT c FROM ContestInfo c WHERE c.endTime>:now AND c.beginTime<:now ORDER BY c.beginTime DESC")
+    @Query("SELECT c FROM ContestInfo c WHERE c.endTime>:date AND c.beginTime<:date ORDER BY c.beginTime DESC")
     List<ContestInfo> getContestRunning(@Param("date")Date now);
 
-    @Query("SELECT c FROM ContestInfo c WHERE c.endTime<:now ORDER BY c.beginTime DESC")
+    @Query("SELECT c FROM ContestInfo c WHERE c.endTime<:date ORDER BY c.beginTime DESC")
     List<ContestInfo> getContestEnded(@Param("date")Date now);
 }
