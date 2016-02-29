@@ -14,6 +14,7 @@ public class HomeController {
 	public String printWelcome(ModelMap model) {
 
 		model.addAttribute("message", "Hello world!");
-		return "hello";
+		model.addAttribute("title", "ACMer下一站社区");
+		return "home";
 	}
 }
