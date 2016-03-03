@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>题目列表 - ACMer下一站社区 http://www.acmer.xyz</title>
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/css/problem.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="../index.html">ACMer.<small>下一站</small></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="../index.html">首页</a></li>
+                <li class="active"><a href="problemlist.html">题目</a></li>
+                <li><a href="status.html">状态</a></li>
+                <li><a href="../contest/contestlist.html">比赛</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="../user/user.html">Admin</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+
+<div class="container">
+
+    <div class="row" id="list">
+        <div class="col-lg-9">
+            <div class="item" id="problem">
+                <div class="home_suggest_topics panel panel-default">
+                    <div class="panel-heading">题目</div>
+                    <div class="panel-body topics row">
+                        <div class="col-lg-12 title">
+                            <h2>A+B Problem</h2>
+                            <p><label>Time Limit</label>:1000MS &nbsp;|&nbsp; <label>Memory Limit</label>:10000K</p>
+                        </div>
+                        <div class="col-lg-12 description">
+                            <h3>Description</h3>
+                            <p>Calculate a+b</p>
+                        </div>
+                        <div class="col-lg-12 input">
+                            <h3>Input</h3>
+                            <p>Two integer a,b (0<=a,b<=10)</p>
+                        </div>
+                        <div class="col-lg-12 output">
+                            <h3>Output</h3>
+                            <p>Output a+b</p>
+                        </div>
+                        <div class="col-lg-12 sinput">
+                            <h3>Sample Input</h3>
+                            <pre>1 2</pre>
+                        </div>
+                        <div class="col-lg-12 soutput">
+                            <h3>Sample Output</h3>
+                            <pre>3</pre>
+                        </div>
+
+                    </div>
+                    <div class="panel-footer">
+                        <div class="btn-group" role="group" aria-label="...">
+                            <a type="button" class="btn btn-success" href="submit.html">提交</a>
+                            <a type="button" class="btn btn-info" href="status.html" target="_blank">状态</a>
+                            <a type="button" class="btn btn-warning" disabled>讨论</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="row">
+                <div class="col-lg-12 item">
+                    <div class="home_suggest_topics panel panel-default">
+                        <div class="panel-heading">最新公告</div>
+                        <div class="panel-body topics row">
+                            <div class="info col-lg-12">
+                                <div class="title">
+                                    <a>20160101系统更新</a>
+                                </div>
+                            </div>
+                            <div class="info col-lg-12">
+                                <div class="title">
+                                    <a>关于讨论模块的后继开发</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            <a href="#">查看更多...</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 item">
+                    <div class="home_suggest_topics panel panel-default">
+                        <div class="panel-heading">搜索</div>
+                        <div class="panel-body topics row">
+                            <form id="find">
+                                <div class="form-group form-group-sm">
+                                    <label class="sr-only" for="pid">PID</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">PID&nbsp;</div>
+                                        <input type="text" class="form-control" id="pid" placeholder="PID">
+                                    </div>
+                                </div>
+                                <div class="form-group form-group-sm">
+                                    <label class="sr-only" for="title">标题</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">标题</div>
+                                        <input type="text" class="form-control" id="title" placeholder="标题">
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-sm">搜索</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 item">
+                    <div class="home_suggest_topics panel panel-default">
+                        <div class="panel-heading">链接</div>
+                        <div class="panel-body topics row">
+                            <div class="info col-lg-12">
+                                <div class="title">
+                                    <a>POJ</a>
+                                </div>
+                            </div>
+                            <div class="info col-lg-12">
+                                <div class="title">
+                                    <a>HDU</a>
+                                </div>
+                            </div>
+                            <div class="info col-lg-12">
+                                <div class="title">
+                                    <a>SDUT</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>
+            <span class="glyphicon glyphicon-ice-lolly-tasted" aria-hidden="true"></span>&nbsp;Copyleft
+            <a target="_blank" href="https://github.com/OpenSDUT">OpenSDUT</a> 2016 | 题目
+        </p>
+    </footer>
+</div> <!-- /container -->
+
+<script src="../static/js/jquery.min.js"></script>
+<script src="../static/js/bootstrap.min.js"></script>
+</body>
+</html>

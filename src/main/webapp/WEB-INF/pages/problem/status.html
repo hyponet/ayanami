@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>状态 - ACMer下一站社区 http://www.acmer.xyz</title>
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/css/status.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="../index.html">ACMer.<small>下一站</small></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="../index.html">首页</a></li>
+                <li><a href="problemlist.html">题目</a></li>
+                <li class="active"><a href="status.html">状态</a></li>
+                <li><a href="../contest/contestlist.html">比赛</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="../user/user.html">Admin</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+
+<div class="container">
+
+    <div class="row" id="list">
+        <div class="col-lg-9">
+            <div class="item" id="problem">
+                <div class="home_suggest_topics panel panel-default">
+                    <div class="panel-heading">状态</div>
+                    <div class="panel-body topics row">
+                        <div class="col-lg-12">
+                        <table class="table table-bordered table-striped table-hover table-condensed">
+                            <thead>
+                            <tr>
+                                <th>RUNID</th>
+                                <th>User</th>
+                                <th>Problem</th>
+                                <th>Result</th>
+                                <th>Memory</th>
+                                <th>Time</th>
+                                <th>Language</th>
+                                <th>Code Length</th>
+                                <th>Submit Time</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="danger">
+                                <th scope="row">15207035</th>
+                                <td>Tattos</td>
+                                <td>1318</td>
+                                <td><b>Wrong Answer</b></td>
+                                <td></td>
+                                <td></td>
+                                <td>G++</td>
+                                <td>772B</td>
+                                <td>2016-02-28 00:19:15</td>
+                            </tr>
+                            <tr class="success">
+                                <th scope="row">15207034</th>
+                                <td>1004153223</td>
+                                <td>1318</td>
+                                <td><b>Accepted</b></td>
+                                <td>56628K</td>
+                                <td>500MS</td>
+                                <td>G++</td>
+                                <td>1772B</td>
+                                <td>2016-02-27 00:19:15</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <ul class="pagination list">
+                            <li>
+                                <a href="#" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            <li><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li>
+                                <a href="#" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="row">
+                <div class="col-lg-12 item">
+                    <div class="home_suggest_topics panel panel-default">
+                        <div class="panel-heading">最新公告</div>
+                        <div class="panel-body topics row">
+                            <div class="info col-lg-12">
+                                <div class="title">
+                                    <a>20160101系统更新</a>
+                                </div>
+                            </div>
+                            <div class="info col-lg-12">
+                                <div class="title">
+                                    <a>关于讨论模块的后继开发</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            <a href="#">查看更多...</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 item">
+                    <div class="home_suggest_topics panel panel-default">
+                        <div class="panel-heading">搜索</div>
+                        <div class="panel-body topics row">
+                            <form id="find">
+                                <div class="form-group form-group-sm">
+                                    <label class="sr-only" for="pid">PID</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">PID</div>
+                                        <input type="text" class="form-control" id="pid" placeholder="PID">
+                                    </div>
+                                </div>
+                                <div class="form-group form-group-sm">
+                                    <label class="sr-only" for="user">User</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">User</div>
+                                        <input type="text" class="form-control" id="user" placeholder="Username">
+                                    </div>
+                                </div>
+                                <div class="form-group form-group-sm">
+                                    <label class="sr-only" for="result">Result</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">Result</div>
+                                        <select class="form-control" id="result">
+                                            <option value="" selected="">All</option>
+                                            <option value="0">Accepted</option>
+                                            <option value="1">Presentation Error</option>
+                                            <option value="2">Time Limit Exceeded</option>
+                                            <option value="3">Memory Limit Exceeded</option>
+                                            <option value="4">Wrong Answer</option>
+                                            <option value="5">Runtime Error</option>
+                                            <option value="6">Output Limit Exceeded</option>
+                                            <option value="7">Compile Error</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-sm">搜索</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 item">
+                    <div class="home_suggest_topics panel panel-default">
+                        <div class="panel-heading">链接</div>
+                        <div class="panel-body topics row">
+                            <div class="info col-lg-12">
+                                <div class="title">
+                                    <a>POJ</a>
+                                </div>
+                            </div>
+                            <div class="info col-lg-12">
+                                <div class="title">
+                                    <a>HDU</a>
+                                </div>
+                            </div>
+                            <div class="info col-lg-12">
+                                <div class="title">
+                                    <a>SDUT</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>
+            <span class="glyphicon glyphicon-ice-lolly-tasted" aria-hidden="true"></span>&nbsp;Copyleft
+            <a target="_blank" href="https://github.com/OpenSDUT">OpenSDUT</a> 2016 | 状态
+        </p>
+    </footer>
+</div> <!-- /container -->
+
+<script src="../static/js/jquery.min.js"></script>
+<script src="../static/js/bootstrap.min.js"></script>
+</body>
