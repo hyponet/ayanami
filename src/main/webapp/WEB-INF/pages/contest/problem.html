@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BIT ICPC 15级寒假集训------最短路 - ACMer下一站社区 http://www.acmer.xyz</title>
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/css/contest.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="../index.html">ACMer.<small>下一站</small></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="../index.html">首页</a></li>
+                <li><a href="../problem/problemlist.html">题目</a></li>
+                <li><a href="../problem/status.html">状态</a></li>
+                <li class="active"><a href="../contest/contestlist.html">比赛</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="../user/user.html">Admin</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+
+<div class="container">
+
+    <div class="row" id="list">
+        <div class="col-lg-12">
+            <div class="item" id="problem">
+                <div class="home_suggest_topics panel panel-default">
+                    <div class="panel-heading">比赛</div>
+                    <div class="panel-body topics row">
+                        <div class="col-lg-12 contest-title">
+                            <h1>HUST Training 2016-02-28</h1>
+                            <hr/>
+                            <div class="col-lg-12">
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
+                                        <span class="sr-only">45% Complete</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <br/>
+                            <p><label>Start Time</label>:2016-02-28 12:30:00&nbsp;<label>End Time</label>:2016-02-28 17:30:00</p>
+                            <p><label>Contest Type</label>:测试赛&nbsp;<label>Manager</label>:<a>pyy08191189</a></p>
+                        </div>
+                        <div class="col-lg-12 link">
+                            <ul class="nav nav-pills">
+                                <li role="presentation" class="active"><a href="contest.html">Problems</a></li>
+                                <li role="presentation"><a href="status.html">Status</a></li>
+                                <li role="presentation"><a href="rank.html">Rank</a></li>
+                            </ul>
+                            <hr/>
+                        </div>
+                        <div class="col-lg-12">
+
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
+                                <ul id="problemTabs" class="nav nav-tabs" role="tablist">
+                                    <li role="presentation" class="active">
+                                        <a href="#A" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">A</a>
+                                    </li>
+                                    <li role="presentation" class="">
+                                        <a href="#B" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">B</a>
+                                    </li>
+                                </ul>
+                                <div id="problemTabContent" class="tab-content">
+                                    <div role="tabpanel" class="tab-pane fade active in" id="A">
+                                        <div class="row problem">
+                                            <div class="col-lg-12 title">
+                                                <h2>A+B Problem</h2>
+                                                <p><label>Time Limit</label>:1000MS &nbsp;|&nbsp; <label>Memory Limit</label>:10000K</p>
+                                            </div>
+                                            <div class="col-lg-12 description">
+                                                <h3>Description</h3>
+                                                <p>Calculate a+b</p>
+                                            </div>
+                                            <div class="col-lg-12 input">
+                                                <h3>Input</h3>
+                                                <p>Two integer a,b (0<=a,b<=10)</p>
+                                            </div>
+                                            <div class="col-lg-12 output">
+                                                <h3>Output</h3>
+                                                <p>Output a+b</p>
+                                            </div>
+                                            <div class="col-lg-12 sinput">
+                                                <h3>Sample Input</h3>
+                                                <pre>1 2</pre>
+                                            </div>
+                                            <div class="col-lg-12 soutput">
+                                                <h3>Sample Output</h3>
+                                                <pre>3</pre>
+                                            </div>
+                                            <div class="col-lg-12 submit">
+                                                <hr/>
+                                                <a class="btn btn-primary" target="_blank" href="submit.html">Submit</a>
+                                                <a class="btn btn-default" target="_blank" href="status.html">Status</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane fade" id="B">
+                                        <div class="row problem">
+                                            <div class="col-lg-12 title">
+                                                <h2>Exponentiation</h2>
+                                                <p><label>Time Limit</label>:500MS &nbsp;|&nbsp; <label>Memory Limit</label>:10000K</p>
+                                            </div>
+                                            <div class="col-lg-12 description">
+                                                <h3>Description</h3>
+                                                <p>Problems involving the computation of exact values of very large magnitude and precision are
+                                                     common. For example, the computation of the national debt is a taxing experience for many computer systems. </p>
+                                                <p>This problem requires that you write a program to compute the exact value of Rn where R is a real number
+                                                    ( 0.0 < R < 99.999 ) and n is an integer such that 0 < n <= 25.</p>
+                                            </div>
+                                            <div class="col-lg-12 input">
+                                                <h3>Input</h3>
+                                                <p>The input will consist of a set of pairs of values for R and n. The R value will occupy columns 1 through 6,
+                                                    and the n value will be in columns 8 and 9.</p>
+                                            </div>
+                                            <div class="col-lg-12 output">
+                                                <h3>Output</h3>
+                                                <p>The output will consist of one line for each line of input giving the exact value of R^n. Leading
+                                                    zeros should be suppressed in the output. Insignificant trailing zeros must not be printed. Don't print
+                                                    the decimal point if the result is an integer.</p>
+                                            </div>
+                                            <div class="col-lg-12 sinput">
+                                                <h3>Sample Input</h3>
+                                                <pre>95.123 12
+0.4321 20
+5.1234 15
+6.7592  9
+98.999 10
+1.0100 12</pre>
+                                            </div>
+                                            <div class="col-lg-12 soutput">
+                                                <h3>Sample Output</h3>
+                                                <pre>548815620517731830194541.899025343415715973535967221869852721
+.00000005148554641076956121994511276767154838481760200726351203835429763013462401
+43992025569.928573701266488041146654993318703707511666295476720493953024
+29448126.764121021618164430206909037173276672
+90429072743629540498.107596019456651774561044010001
+1.126825030131969720661201</pre>
+                                            </div>
+                                            <div class="col-lg-12 submit">
+                                                <hr/>
+                                                <a class="btn btn-primary" target="_blank" href="submit.html">Submit</a>
+                                                <a class="btn btn-default" target="_blank" href="status.html">Status</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <p>
+            <span class="glyphicon glyphicon-ice-lolly-tasted" aria-hidden="true"></span>&nbsp;Copyleft
+            <a target="_blank" href="https://github.com/OpenSDUT">OpenSDUT</a> 2016 | 比赛
+        </p>
+    </footer>
+</div> <!-- /container -->
+
+<script src="../static/js/jquery.min.js"></script>
+<script src="../static/js/bootstrap.min.js"></script>
+</body>
